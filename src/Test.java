@@ -1,6 +1,7 @@
 import agents.ExampleAgent;
 import core.Game;
 import core.Player;
+import utils.Board;
 import utils.GUI;
 import utils.Types;
 import utils.WindowInput;
@@ -12,7 +13,7 @@ public class Test {
     public static void main(String[] args) {
 
         // Game parameters
-        Types.TILETYPE[][] board = new Types.TILETYPE[0][0];
+        Types.TILETYPE[][] board = Board.simpleBoard();
         ArrayList<Player> players = new ArrayList<Player>();
         players.add(new ExampleAgent(0,0));
         Game game = new Game(board, players);

@@ -158,9 +158,7 @@ public class GUI extends JFrame {
         // Update all views
         for (int i = 0; i < views.length; i++) {
             if (views[i] != null) {  // Side views (i > 0) may be null if human is playing and side view not displayed.
-
-//                views[i].paint(game.getBoard(), game.getGameState().getBombLife());
-                views[i].paint(game.getBoard(), new int[0][0]);
+                views[i].repaint();
             }
         }
 

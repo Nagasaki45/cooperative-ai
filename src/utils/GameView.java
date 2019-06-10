@@ -55,11 +55,7 @@ public class GameView extends JComponent {
                     // Actual image (admits transparencies).
                     Image objImage = gobj.getImage();
                     if (objImage != null) {
-                        if (gobj == Types.TILETYPE.BOMB) {
-                            drawBomb(g, objImage, rect, bombLife[i][j], cellSize);
-                        } else {
-                            drawImage(g, objImage, rect);
-                        }
+                        drawImage(g, objImage, rect);
                     }
                 }
             }
@@ -79,37 +75,6 @@ public class GameView extends JComponent {
         gphx.drawImage(img, r.x, r.y, (int) (w*scaleX), (int) (h*scaleY), null);
     }
 
-    private static void drawBomb(Graphics2D gphx, Image img, Rectangle r, int bombLife, int cellSize) {
-        drawImage(gphx, img, r);
-
-        // Draw bomb life
-        int scale = cellSize/123;
-
-        int startX = r.x;
-        int width = scale * bombLife;
-        int height = cellSize/10;
-        int startY = r.y + r.height - height;
-
-        int darkLineY = r.y + r.height - 1;
-
-        gphx.setColor(Color.red);
-        gphx.fillRect(startX, startY, width, height);
-        gphx.setColor(Color.black);
-        gphx.drawLine(startX, darkLineY, startX + width, darkLineY);
-        gphx.setColor(new Color(255, 94, 84));
-        gphx.drawLine(startX, startY, startX + width, startY);
-    }
-
-    /**
-     * All the objects in a board.
-     * @param objects in the game
-     */
-    void paint(Types.TILETYPE[][] objects, int[][] bombLife)
-    {
-        copyObjects(objects, bombLife);
-        this.repaint();
-    }
-
     private void copyObjects(Types.TILETYPE[][] objects, int[][] bombs)
     {
         objs = new Types.TILETYPE[gridSize][gridSize];
@@ -127,52 +92,5 @@ public class GameView extends JComponent {
      */
     public Dimension getPreferredSize() {
         return dimension;
-    }
-
-
-    public static void main(String[] args)
-    {
-        Types.TILETYPE[][] gobj = new Types.TILETYPE[4][4];
-
-        //gobj[0][0] = new GameObject();
-        gobj[0][1] = Types.TILETYPE.PASSAGE;
-        gobj[0][2] = Types.TILETYPE.PASSAGE;
-        gobj[0][3] = Types.TILETYPE.PASSAGE;
-
-        gobj[1][0] = Types.TILETYPE.BOMB;
-        gobj[1][1] = Types.TILETYPE.FLAMES;
-        gobj[1][2] = Types.TILETYPE.WOOD;
-        gobj[1][3] = Types.TILETYPE.RIGID;
-
-        gobj[2][0] = Types.TILETYPE.EXTRABOMB;
-        gobj[2][1] = Types.TILETYPE.INCRRANGE;
-        gobj[2][2] = Types.TILETYPE.KICK;
-        gobj[2][3] = Types.TILETYPE.PASSAGE;
-
-        gobj[3][0] = Types.TILETYPE.AGENT0;
-        gobj[3][1] = Types.TILETYPE.AGENT1;
-        gobj[3][2] = Types.TILETYPE.AGENT2;
-        gobj[3][3] = Types.TILETYPE.AGENT3;
-
-        GameView view = new GameView(gobj, 123);
-
-        JEasyFrame frame = new JEasyFrame(view, "Java-Pommerman", true);
-        WindowInput wi = new WindowInput();
-        frame.addWindowListener(wi);
-        wi.windowClosed = false;
-
-        for (int i = 0; i < 2000; ++i)
-        {
-            view.paint(gobj, new int[4][4]);
-            try {
-                Thread.sleep(50);
-            } catch(Exception e)
-            {
-                System.out.println("EXCEPTION " + e);
-            }
-        }
-
-        System.out.println("DONE");
-
     }
 }
