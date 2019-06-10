@@ -12,14 +12,11 @@ public class Game {
     private GameState gs;
     private ArrayList<Player> players;
     private boolean visuals;
-    private int frameDelay;
 
-    public Game(Types.TILETYPE[][] board, ArrayList<Player> players, boolean visuals,
-                int frameDelay) {
+    public Game(Types.TILETYPE[][] board, ArrayList<Player> players) {
         this.gs = new GameState(board);
         this.players = players;
-        this.visuals = visuals;
-        this.frameDelay = frameDelay;
+        this.visuals = Config.VISUALS;
     }
 
     /**
@@ -56,7 +53,7 @@ public class Game {
             if (visuals && frame != null) {
                 frame.paint();
                 try {
-                    Thread.sleep(frameDelay);
+                    Thread.sleep(Config.FRAME_DELAY);
                 } catch (InterruptedException e) {
                     System.out.println("EXCEPTION " + e);
                 }

@@ -1,5 +1,6 @@
 package utils;
 
+import core.Config;
 import core.Game;
 
 import javax.swing.*;
@@ -77,8 +78,7 @@ public class GUI extends JFrame {
     private void createGameViews() {
         views = new GameView[1];  // N individual views + main true game state
         for (int i = 0; i < views.length; i++) {
-            int cellSize = 400;  // TODO set this somewhere!
-            views[i] = new GameView(game.getBoard(), cellSize);
+            views[i] = new GameView(game.getBoard(), Config.CELL_SIZE);
         }
     }
 
