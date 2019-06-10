@@ -17,6 +17,10 @@ public class Game {
         this.gs = new GameState(board);
         this.players = players;
         this.visuals = Config.VISUALS;
+        for (Player p : players)
+        {
+            this.gs.addPlayer(p.playerID);
+        }
     }
 
     /**
