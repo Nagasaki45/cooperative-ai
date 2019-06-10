@@ -18,7 +18,7 @@ public class Test {
         players.add(new ExampleAgent(0,0));
         Game game = new Game(board, players);
 
-        GUI frame = new GUI(game, "Java-Pommerman", false, true);
+        GUI frame = new GUI(game, "cooperative-ai", false);
         WindowInput wi = new WindowInput();
         game.run(frame, wi);
     }
