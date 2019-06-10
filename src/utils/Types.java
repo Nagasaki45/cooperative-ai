@@ -1,11 +1,7 @@
 package utils;
 
-import core.gameConfig.IGameConfig;
-import core.gameConfig.OriginalGameConfig;
-
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Types {
 
@@ -55,7 +51,40 @@ public class Types {
             else return null;
         }
     }
-    
+
+    public enum ACTIONS {
+        ACTION_STOP(0),
+        ACTION_UP(1),
+        ACTION_DOWN(2),
+        ACTION_LEFT(3),
+        ACTION_RIGHT(4);
+
+        private int key;
+
+        ACTIONS(int numVal) {
+            this.key = numVal;
+        }
+
+        public int getKey() {
+            return this.key;
+        }
+
+        /**
+         * Gets all actions of the game
+         *
+         * @return all the actions in an array list.
+         */
+        public static ArrayList<ACTIONS> all() {
+            ArrayList<ACTIONS> allActions = new ArrayList<ACTIONS>();
+            allActions.add(ACTION_STOP);
+            allActions.add(ACTION_UP);
+            allActions.add(ACTION_DOWN);
+            allActions.add(ACTION_LEFT);
+            allActions.add(ACTION_RIGHT);
+            return allActions;
+        }
+    }
+
     /**
      * Results of the game.
      */
