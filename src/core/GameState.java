@@ -20,10 +20,18 @@ public class GameState {
 
     public void addPlayer(int playerID)
     {
-        int x = playerID + 1;
-        int y = playerID + 1;
+        int y;
+        int x = board.length / 2;
+
+        if (playerID == 0) {
+            y = 1;
+            this.board[y][x] = Types.TILETYPE.AGENT0;
+        } else {
+            y = board.length - 2;
+            this.board[y][x] = Types.TILETYPE.AGENT1;
+        }
+
         playerPositions.put(playerID, new Vector2d(x, y));
-        this.board[x][y] = Types.TILETYPE.AGENT0;
     }
 
     public void next(Types.ACTIONS[] actions) {
