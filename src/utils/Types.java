@@ -10,18 +10,8 @@ public class Types {
         //Types and IDs
         PASSAGE(0),
         RIGID(1),
-        WOOD(2),
-        BOMB(3),
-        FLAMES(4),
-        FOG(5),
-        EXTRABOMB(6),
-        INCRRANGE(7),
-        KICK(8),
-        AGENTDUMMY(9),
         AGENT0(10),
-        AGENT1(11),
-        AGENT2(12),
-        AGENT3(13);
+        AGENT1(11);
 
         private int key;
         TILETYPE(int numVal) {  this.key = numVal;  }
@@ -36,18 +26,8 @@ public class Types {
         {
             if      (key == PASSAGE.key) return ImageIO.GetInstance().getImage("img/passage.png");
             else if (key == RIGID.key) return ImageIO.GetInstance().getImage("img/rigid.png");
-            else if (key == WOOD.key) return ImageIO.GetInstance().getImage("img/wood.png");
-            else if (key == BOMB.key) return ImageIO.GetInstance().getImage("img/bomb.png");
-            else if (key == FLAMES.key) return ImageIO.GetInstance().getImage("img/flames.png");
-            else if (key == FOG.key) return ImageIO.GetInstance().getImage("img/fog.png");
-            else if (key == EXTRABOMB.key) return ImageIO.GetInstance().getImage("img/extrabomb.png");
-            else if (key == INCRRANGE.key) return ImageIO.GetInstance().getImage("img/incrrange.png");
-            else if (key == KICK.key) return ImageIO.GetInstance().getImage("img/kick.png");
-            else if (key == AGENTDUMMY.key) return ImageIO.GetInstance().getImage("img/skull1.png");
             else if (key == AGENT0.key) return ImageIO.GetInstance().getImage("img/agent0.png");
             else if (key == AGENT1.key) return ImageIO.GetInstance().getImage("img/agent1.png");
-            else if (key == AGENT2.key) return ImageIO.GetInstance().getImage("img/agent2.png");
-            else if (key == AGENT3.key) return ImageIO.GetInstance().getImage("img/agent3.png");
             else return null;
         }
     }
@@ -83,6 +63,19 @@ public class Types {
             allActions.add(ACTION_RIGHT);
             return allActions;
         }
+
+        public DIRECTIONS getDirection() {
+                if(this == ACTION_UP)
+                    return DIRECTIONS.UP;
+                else if(this == ACTION_DOWN)
+                    return DIRECTIONS.DOWN;
+                else if(this == ACTION_LEFT)
+                    return DIRECTIONS.LEFT;
+                else if(this == ACTION_RIGHT)
+                    return DIRECTIONS.RIGHT;
+                else
+                    return DIRECTIONS.NONE;
+            }
     }
 
     /**
@@ -109,4 +102,28 @@ public class Types {
             return null;
         }
     }
+
+    public enum DIRECTIONS {
+        NONE(0, 0),
+        LEFT(-1, 0),
+        RIGHT(1, 0),
+        UP(0, -1),
+        DOWN(0, 1);
+
+        private int x, y;
+
+        DIRECTIONS(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public Vector2d toVec() {
+            return new Vector2d(x, y);
+        }
+
+        public int x() {return x;}
+        public int y() {return y;}
+    }
+
+
 }

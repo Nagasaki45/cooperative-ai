@@ -34,6 +34,26 @@ public class GameState {
         playerPositions.put(playerID, new Vector2d(x, y));
     }
 
+    public void updatePlayerPositions( Map<Integer, Vector2d> newPlayerPositions ){
+        if(newPlayerPositions.get(0) != playerPositions.get(0) )
+        {
+            board[playerPositions.get(0).y][playerPositions.get(0).x] = Types.TILETYPE.PASSAGE;
+            board[newPlayerPositions.get(0).y][newPlayerPositions.get(0).x] = Types.TILETYPE.AGENT0;
+            playerPositions.put(0, newPlayerPositions.get(0));
+        }
+
+        if(newPlayerPositions.get(1) != playerPositions.get(1) )
+        {
+            board[playerPositions.get(1).y][playerPositions.get(1).x] = Types.TILETYPE.PASSAGE;
+            board[newPlayerPositions.get(1).y][newPlayerPositions.get(1).x] = Types.TILETYPE.AGENT0;
+            playerPositions.put(1, newPlayerPositions.get(1));
+        }
+    }
+
+    public Map<Integer, Vector2d> getPlayerPositions(){
+        return playerPositions;
+    }
+
     public void next(Types.ACTIONS[] actions) {
         ForwardModel.applyActions(this, actions);
     }
