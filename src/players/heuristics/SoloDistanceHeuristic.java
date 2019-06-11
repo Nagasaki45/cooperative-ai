@@ -23,11 +23,11 @@ public class SoloDistanceHeuristic extends StateHeuristic {
         double score = 0;
         if(m_playerId == 0)
         {
-            score = gs.getPlayerPositions().get(0).y / boardHeight;
+            score = (gs.getPlayerPositions().get(0).y  ) / boardHeight;
         }
         else if(m_playerId == 1)
         {
-            score = (boardHeight - gs.getPlayerPositions().get(1).y) / boardHeight;
+            score = (boardHeight - gs.getPlayerPositions().get(1).y +1 ) / boardHeight;
         }
         return score;
     }

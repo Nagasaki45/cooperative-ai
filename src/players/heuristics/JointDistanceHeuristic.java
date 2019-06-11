@@ -24,13 +24,12 @@ public class JointDistanceHeuristic extends StateHeuristic {
 
         if(m_playerId == 0)
         {
-            score += gs.getPlayerPositions().get(0).y / boardHeight;
+            score += 0.5 * (gs.getPlayerPositions().get(0).y / boardHeight);
         }
-        else if(m_playerId == 1)
+        if(m_playerId == 1)
         {
-            score += (boardHeight - gs.getPlayerPositions().get(1).y) / boardHeight;
+            score += 0.5 * ((boardHeight - gs.getPlayerPositions().get(1).y +1 ) / boardHeight);
         }
-
         return score;
     }
 }
