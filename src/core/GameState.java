@@ -35,6 +35,7 @@ public class GameState {
     }
 
     public void updatePlayerPositions( Map<Integer, Vector2d> newPlayerPositions ){
+
         if(newPlayerPositions.get(0) != playerPositions.get(0) )
         {
             board[playerPositions.get(0).y][playerPositions.get(0).x] = Types.TILETYPE.PASSAGE;
@@ -45,7 +46,7 @@ public class GameState {
         if(newPlayerPositions.get(1) != playerPositions.get(1) )
         {
             board[playerPositions.get(1).y][playerPositions.get(1).x] = Types.TILETYPE.PASSAGE;
-            board[newPlayerPositions.get(1).y][newPlayerPositions.get(1).x] = Types.TILETYPE.AGENT0;
+            board[newPlayerPositions.get(1).y][newPlayerPositions.get(1).x] = Types.TILETYPE.AGENT1;
             playerPositions.put(1, newPlayerPositions.get(1));
         }
     }
