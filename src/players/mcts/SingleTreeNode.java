@@ -60,6 +60,7 @@ public class SingleTreeNode
         this.m_rnd = rnd;
         this.num_actions = num_actions;
         this.actions = actions;
+        this.playerID = playerID;
         children = new SingleTreeNode[num_actions];
         totValue = 0.0;
         this.childIdx = childIdx;
@@ -223,12 +224,9 @@ public class SingleTreeNode
         int nPlayers = gs.getPlayerPositions().size();
         Types.ACTIONS[] actionsAll = new Types.ACTIONS[nPlayers];
 
-        //This is the location in the array of actions according to my player ID
-        int playerId = playerID - Types.TILETYPE.AGENT0.getKey();
-
         for(int i = 0; i < nPlayers; ++i)
         {
-            if(playerId == i)
+            if(playerID == i)
             {
                 //This is me, just put the action in the array.
                 actionsAll[i] = act;
