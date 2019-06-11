@@ -65,8 +65,27 @@ public class GameState {
         return false;
     }
 
+    public Vector2d getBoardSize()
+    {
+        int y = board.length;
+        int x = board[0].length;
+        return new Vector2d(x, y);
+    }
+
     public GameState copy() {
-        GameState copy = new GameState(this.board);
+        Vector2d boardSize = getBoardSize();
+        GameState copy = new GameState(new Types.TILETYPE[boardSize.y][boardSize.x]);
+
+        // Copy board
+        for (int y = 0; y < boardSize.y; y++)
+        {
+            for (int x = 0; x < boardSize.x; x++)
+            {
+                copy.board[y][x] = board[y][x];
+            }
+        }
+
+        // Copy player positions
         copy.playerPositions = new HashMap<Integer, Vector2d>();
         for (Map.Entry<Integer, Vector2d> entry : this.playerPositions.entrySet())
         {
