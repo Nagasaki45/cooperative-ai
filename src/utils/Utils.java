@@ -27,4 +27,12 @@ public class Utils
             return (input + epsilon) * (1.0 + epsilon * (random - 0.5));
         }
     }
+
+    // Clamps 'val' between 'mim' and 'max'
+    public static int clamp(int min, int val, int max)
+    {
+        if(val < min) return min;
+        if(val > max) return max;
+        return val;
+    }
 }

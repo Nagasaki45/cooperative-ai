@@ -3,6 +3,7 @@ import players.ExampleAgent;
 import core.Game;
 import core.Player;
 import players.mcts.MCTSPlayer;
+import players.rhea.RHEAPlayer;
 import utils.Board;
 import utils.GUI;
 import utils.Types;
@@ -18,7 +19,8 @@ public class Test {
         Types.TILETYPE[][] board = Board.simpleBoard();
         ArrayList<Player> players = new ArrayList<Player>();
         players.add(new MCTSPlayer(0,0));
-        players.add(new MCTSPlayer(1,1));
+        //players.add(new MCTSPlayer(1,1));
+        players.add(new RHEAPlayer(1,1));
         //players.add(new ExampleAgent(0,1));
         Game game = new Game(board, players);
 
