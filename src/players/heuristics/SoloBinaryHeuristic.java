@@ -18,11 +18,12 @@ public class SoloBinaryHeuristic extends StateHeuristic {
 
     @Override
     public double evaluateState(GameState gs) {
+
         if(m_playerId == 0)
         {
             if(gs.getPlayerPositions().get(0).y == gs.getBoardHeight()-2)
             {
-                return 1;
+                return 1000;
             }
             else
             {
@@ -33,7 +34,7 @@ public class SoloBinaryHeuristic extends StateHeuristic {
         {
             if(gs.getPlayerPositions().get(1).y == 1)
             {
-                return 1;
+                return 1000;
             }
             else
             {
