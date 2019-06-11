@@ -79,31 +79,6 @@ public class Types {
             }
     }
 
-    /**
-     * Results of the game.
-     */
-    public enum RESULT {
-        WIN(0),
-        LOSS(1),
-        TIE(2),
-        INCOMPLETE(3);
-
-        private int key;
-        RESULT(int numVal) { this.key = numVal; }
-        public int getKey() { return this.key; }
-
-        /**
-         * Returns the colour that represents such victory condition for the GUI.
-         * @return colours of results.
-         */
-        public Color getColor() {
-            if (key == WIN.key) return Color.green;
-            if (key == LOSS.key) return Color.red;
-            if (key == TIE.key) return Color.orange;
-            return null;
-        }
-    }
-
     public enum DIRECTIONS {
         NONE(0, 0),
         LEFT(-1, 0),
