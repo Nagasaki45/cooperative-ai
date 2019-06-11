@@ -19,13 +19,14 @@ public class MCTSParams implements ParameterSet {
     public final int STOP_FMCALLS = 2;
 
     public final int STUPID_HEURISTIC = 0;
+    public final int SOLO_BINARY_HEURISTIC = 1;
 
     public double epsilon = 1e-6;
 
     // Parameters
     public double K = Math.sqrt(2);
     public int rollout_depth = 8;//10;
-    public int heuristic_method = STUPID_HEURISTIC;
+    public int heuristic_method = SOLO_BINARY_HEURISTIC;
 
     // Budget settings
     public int stop_type = STOP_TIME;
@@ -66,7 +67,7 @@ public class MCTSParams implements ParameterSet {
         HashMap<String, Object[]> parameterValues = new HashMap<>();
         parameterValues.put("K", new Double[]{1.0, Math.sqrt(2), 2.0});
         parameterValues.put("rollout_depth", new Integer[]{5, 8, 10, 12, 15});
-        parameterValues.put("heuristic_method", new Integer[]{STUPID_HEURISTIC});
+        parameterValues.put("heuristic_method", new Integer[]{STUPID_HEURISTIC, SOLO_BINARY_HEURISTIC});
         return parameterValues;
     }
 

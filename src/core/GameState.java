@@ -80,6 +80,17 @@ public class GameState {
         return board;
     }
 
+    public Integer getBoardHeight()
+    {
+        return board.length;
+    }
+
+    public Integer getBoardWidth()
+    {
+        return board[0].length;
+    }
+
+
     public int nActions()
     {
         return Types.ACTIONS.all().size();
