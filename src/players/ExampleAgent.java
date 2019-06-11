@@ -1,4 +1,4 @@
-package agents;
+package players;
 
 import core.GameState;
 import core.Player;

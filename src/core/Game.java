@@ -37,13 +37,13 @@ public class Game {
         boolean firstEnd = true;
         Types.RESULT[] results = null;
 
-        while(!isEnded() || visuals && wi != null && !wi.windowClosed && !isEnded()) {
+        while(!gs.isEnded() || visuals && wi != null && !wi.windowClosed && !gs.isEnded()) {
             // Loop while window is still open, even if the game ended.
             // If not playing with visuals, loop while the game's not ended.
             tick();
 
             // Check end of game
-            if (firstEnd && isEnded()) {
+            if (firstEnd && gs.isEnded()) {
                 firstEnd = false;
                 results = terminate();
 
@@ -75,12 +75,6 @@ public class Game {
     public Types.TILETYPE[][] getBoard()
     {
         return gs.getBoard();
-    }
-
-    private boolean isEnded()
-    {
-        // TODO proper isEnded.
-        return false;
     }
 
     /**

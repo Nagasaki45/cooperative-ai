@@ -59,6 +59,12 @@ public class GameState {
         ForwardModel.applyActions(this, actions);
     }
 
+    public boolean isEnded()
+    {
+        // TODO proper isEnded.
+        return false;
+    }
+
     public GameState copy() {
         GameState copy = new GameState(this.board);
         copy.playerPositions = new HashMap<Integer, Vector2d>();
@@ -72,5 +78,10 @@ public class GameState {
     public Types.TILETYPE[][] getBoard()
     {
         return board;
+    }
+
+    public int nActions()
+    {
+        return Types.ACTIONS.all().size();
     }
 }

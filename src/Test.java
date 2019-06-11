@@ -1,6 +1,7 @@
-import agents.ExampleAgent;
+import players.ExampleAgent;
 import core.Game;
 import core.Player;
+import players.mcts.MCTSPlayer;
 import utils.Board;
 import utils.GUI;
 import utils.Types;
@@ -15,7 +16,7 @@ public class Test {
         // Game parameters
         Types.TILETYPE[][] board = Board.simpleBoard();
         ArrayList<Player> players = new ArrayList<Player>();
-        players.add(new ExampleAgent(0,0));
+        players.add(new MCTSPlayer(0,0));
         players.add(new ExampleAgent(0,1));
         Game game = new Game(board, players);
 
