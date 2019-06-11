@@ -28,6 +28,39 @@ public class Board {
         return board;
     }
 
+    public static String toString(Types.TILETYPE[][] board)
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < board.length+2; i++) {
+            stringBuilder.append("*");
+        }
+        stringBuilder.append("\n");
+        for (Types.TILETYPE[] gameObjects : board) {
+            stringBuilder.append("*");
+            for (Types.TILETYPE type : gameObjects) {
+                if (type.getKey() < Types.TILETYPE.AGENT0.getKey() && type.getKey() > 0)
+                    stringBuilder.append(type.getKey());
+                else {
+                    if (type == Types.TILETYPE.PASSAGE)
+                        stringBuilder.append(" ");
+                    else if (type == Types.TILETYPE.AGENT0)
+                        stringBuilder.append("a");
+                    else if (type == Types.TILETYPE.AGENT1)
+                        stringBuilder.append("b");
+                    else
+                        stringBuilder.append("-");
+                }
+            }
+
+            stringBuilder.append("*\n");
+        }
+        for (int i = 0; i < board.length + 2; i++) {
+            stringBuilder.append("*");
+        }
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
     public static Types.TILETYPE[][] simpleBoard()
     {
         return parseString(
