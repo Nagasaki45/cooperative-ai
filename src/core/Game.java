@@ -59,7 +59,7 @@ public class Game {
             if (visuals && frame != null) {
                 frame.paint();
                 try {
-                    Thread.sleep(Config.FRAME_DELAY);
+                    Thread.sleep(Types.FRAME_DELAY);
                 } catch (InterruptedException e) {
                     System.out.println("EXCEPTION " + e);
                 }

@@ -31,8 +31,11 @@ public class GameState {
         for (int i = 0; i < playerPositions.size(); i++)
         {
             Vector2d oldPosition = playerPositions.get(i);
-            Vector2d newPosition = newPlayerPositions.get(i);
             board[oldPosition.y][oldPosition.x] = Types.TILETYPE.PASSAGE;
+        }
+        for (int i = 0; i < playerPositions.size(); i++)
+        {
+            Vector2d newPosition = newPlayerPositions.get(i);
             board[newPosition.y][newPosition.x] = (i == 0) ? Types.TILETYPE.AGENT0 : Types.TILETYPE.AGENT1;
         }
         playerPositions = newPlayerPositions;
