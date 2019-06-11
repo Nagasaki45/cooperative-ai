@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Types {
+    public static int MAX_GAME_TICKS = 500;
 
     public enum TILETYPE {
 
