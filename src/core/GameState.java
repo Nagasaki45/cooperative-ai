@@ -138,7 +138,7 @@ public class GameState {
         boolean[] winners = new boolean[2];
 
         winners[0] = (playerPositions.get(0).y == (getBoardSize().y - 2));
-        winners[1] = (playerPositions.get(0).y == 1);
+        winners[1] = (playerPositions.get(1).y == 1);
 
         boolean allWon = true;
         for (boolean winner : winners)
