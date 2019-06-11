@@ -12,7 +12,7 @@ public class ForwardModel {
     public static void applyActions(GameState gs, Types.ACTIONS[] actions)
     {
         Map<Integer, Vector2d> playerPositions = gs.getPlayerPositions();
-        Map<Integer, Vector2d> newPlayerPosisitions = new HashMap<Integer, Vector2d>();;
+        Map<Integer, Vector2d> newPlayerPositions = new HashMap<Integer, Vector2d>();;
 
         for (int i = 0; i < actions.length; i++) {
                 Types.ACTIONS action = actions[i];
@@ -26,11 +26,11 @@ public class ForwardModel {
                     targetPos = pos;
                 }
 
-            newPlayerPosisitions.put(i, targetPos);
+            newPlayerPositions.put(i, targetPos);
         }
 
-        if(newPlayerPosisitions.get(0) != newPlayerPosisitions.get(1)) {
-            gs.updatePlayerPositions(newPlayerPosisitions);
+        if(newPlayerPositions.get(0) != newPlayerPositions.get(1)) {
+            gs.updatePlayerPositions(newPlayerPositions);
         }
 
     }
