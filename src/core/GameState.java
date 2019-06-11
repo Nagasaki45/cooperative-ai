@@ -130,10 +130,16 @@ public class GameState {
 
     public boolean[] getWinners()
     {
-        boolean[] winners = new boolean[2];
+        //Make all players win condition be to reach the top of the screen
+        int numOfPlayers = playerPositions.size();
+        boolean[] winners = new boolean[numOfPlayers];
+        for(int i = 1; i < numOfPlayers; i++){
+            winners[i] = (playerPositions.get(i).y == 1);
+    }
 
+        //...except player 1, who must reach the bottom
         winners[0] = (playerPositions.get(0).y == (getBoardSize().y - 2));
-        winners[1] = (playerPositions.get(1).y == 1);
+
 
         return winners;
     }
