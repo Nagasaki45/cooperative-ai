@@ -23,13 +23,12 @@ public class JointBinaryHeuristic extends StateHeuristic {
 
         if(gs.getPlayerPositions().get(0).y == gs.getBoardHeight()-2)
         {
-            score += 250;
+            score += 0.5;
         }
         if(gs.getPlayerPositions().get(1).y == 1)
         {
-            score += 250;
+            score += 0.5;
         }
-        //System.out.println(score);
 
         return score;
     }
