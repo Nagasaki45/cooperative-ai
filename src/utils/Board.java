@@ -61,131 +61,102 @@ public class Board {
         return stringBuilder.toString();
     }
 
-    public static Types.TILETYPE[][] simpleBoard()
-    {
-        return parseString(
-//                "xxxxxxxxxxx\n" +
-//                "x         x\n" +
-//                "x         x\n" +
-//                "x         x\n" +
-//                "x         x\n" +
-//                "x    x    x\n" +
-//                "x         x\n" +
-//                "x         x\n" +
-//                "x         x\n" +
-//                "x         x\n" +
-//                "xxxxxxxxxxx\n"
-//                  "xxxxxxxxxxx\n" +
-//                  "x         x\n" +
-//                  "x         x\n" +
-//                  "x         x\n" +
-//                  "x         x\n" +
-//                  "xxxxx xxxxx\n" +
-//                  "x         x\n" +
-//                  "x         x\n" +
-//                  "x         x\n" +
-//                  "x         x\n" +
-//                  "xxxxxxxxxxx\n"
-//                      "xxxxxxxxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xx xxxxxxxx\n" +
-//                      "xx       xx\n" +
-//                      "xxxxxxxx xx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxxxxxxxx\n"
-                      "xxxxxxxxxxx\n" +
-                      "x         x\n" +
-                      "x         x\n" +
-                      "xxxxx xxxxx\n" +
-                      "xxxxx xxxxx\n" +
-                      "xxxx   xxxx\n" +
-                      "xxxxx xxxxx\n" +
-                      "xxxxx xxxxx\n" +
-                      "x         x\n" +
-                      "x         x\n" +
-                      "xxxxxxxxxxx\n"
-
-        );
+    public static Types.TILETYPE[][] simpleBoard() {
+        return parseString(getStringByID(1));
     }
+
+    public static String getStringByID(int id){
+
+        String mapString = "";
+
+        if(id == 0) {
+            mapString =     "xxxxxxxxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x    x    x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxxxxxxxx\n";
+
+        } else if(id == 1) {
+            mapString =     "xxxxxxxxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxx xxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxxxxxxxx\n";
+        } else if(id == 2) {
+            mapString =     "xxxxxxxxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xx xxxxxxxx\n" +
+                            "xx       xx\n" +
+                            "xxxxxxxx xx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxxxxxxxx\n";
+        } else if(id == 3) {
+            mapString =     "xxxxxxxxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxx xxxxx\n" +
+                            "xxxxx xxxxx\n" +
+                            "xxxx   xxxx\n" +
+                            "xxxxx xxxxx\n" +
+                            "xxxxx xxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxxxxxxxx\n";
+        } else if(id == 4) {
+            mapString =     "xxxxxxxxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxx xxxxx\n" +
+                            "xxxxx xxxxx\n" +
+                            "xxxxx xxxxx\n" +
+                            "xxxxx xxxxx\n" +
+                            "xxxxx xxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxxxxxxxx\n";
+        } else if(id == 5) {
+        mapString =         "xxxxxxxxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxx xxx xxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxxxxxxxx\n";
+    } else if(id == 6){
+        mapString =         "xxxxxxxxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxx xxxxx\n" +
+                            "xxxx   xxxx\n" +
+                            "xxxx   xxxx\n" +
+                            "xxxx   xxxx\n" +
+                            "xxxxx xxxxx\n" +
+                            "x         x\n" +
+                            "x         x\n" +
+                            "xxxxxxxxxxx\n";
+    }
+
+        return mapString;
+    }
+
 }
-
-
-//                      "xxxxxxxxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxxxxxxxx\n"
-//
-//
-//                      "xxxxxxxxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxxxxxxxx\n"
-//
-//
-//                      "xxxxxxxxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxx xxx xxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxxxxxxxx\n"
-//
-//                      "xxxxxxxxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xx xxxxxxxx\n" +
-//                      "xx       xx\n" +
-//                      "xxxxxxxx xx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxxxxxxxx\n"
-//
-//
-//                      "xxxxxxxxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "xxxx   xxxx\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxxxxxxxx\n"
-//
-//
-//                      "xxxxxxxxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "xxxx   xxxx\n" +
-//                      "xxxx   xxxx\n" +
-//                      "xxxx   xxxx\n" +
-//                      "xxxxx xxxxx\n" +
-//                      "x         x\n" +
-//                      "x         x\n" +
-//                      "xxxxxxxxxxx\n"
