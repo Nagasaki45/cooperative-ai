@@ -208,8 +208,8 @@ public class SingleTreeNode
     private void roll(GameState gs, Types.ACTIONS act)
     {
         //To roll the state forward, we need to pass an action for *all* players.
-        int nPlayers = 4;
-        Types.ACTIONS[] actionsAll = new Types.ACTIONS[4];
+        int nPlayers = gs.getPlayerPositions().size();
+        Types.ACTIONS[] actionsAll = new Types.ACTIONS[nPlayers];
 
         //This is the location in the array of actions according to my player ID
         int playerId = playerID - Types.TILETYPE.AGENT0.getKey();
