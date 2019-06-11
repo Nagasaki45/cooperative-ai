@@ -11,6 +11,7 @@ public class GameState {
 
     private Types.TILETYPE[][] board;
     private Map<Integer, Vector2d> playerPositions;
+    private Integer tick = 0;
 
 
     public GameState(Types.TILETYPE[][] board) {
@@ -56,7 +57,15 @@ public class GameState {
     }
 
     public void next(Types.ACTIONS[] actions) {
-        ForwardModel.applyActions(this, actions);
+        tick++;
+        if(tick == Types.MAX_GAME_TICKS){
+            //END GAME
+        }
+        else{
+            ForwardModel.applyActions(this, actions);
+        }
+
+
     }
 
     public boolean isEnded()
@@ -91,6 +100,10 @@ public class GameState {
         {
             copy.playerPositions.put(entry.getKey(), entry.getValue());
         }
+
+        // Fopy tick
+        copy.tick = tick;
+
         return copy;
     }
 
@@ -107,6 +120,11 @@ public class GameState {
     public Integer getBoardWidth()
     {
         return board[0].length;
+    }
+
+    public Integer getTick()
+    {
+        return tick;
     }
 
 

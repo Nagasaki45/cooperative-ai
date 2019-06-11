@@ -1,15 +1,16 @@
 package players.heuristics;
 
 import core.GameState;
+
 import java.util.Random;
 
-public class SoloBinaryHeuristic extends StateHeuristic {
+public class SoloBinaryTimedHeuristic extends StateHeuristic {
 
     private Random m_rnd;
     private GameState m_prev_gs;
     private Integer m_playerId;
 
-    public SoloBinaryHeuristic(GameState gs, Integer playerId, Random rnd)
+    public SoloBinaryTimedHeuristic(GameState gs, Integer playerId, Random rnd)
     {
         m_prev_gs = gs;
         m_playerId = playerId;
@@ -23,7 +24,7 @@ public class SoloBinaryHeuristic extends StateHeuristic {
         {
             if(gs.getPlayerPositions().get(0).y == gs.getBoardHeight()-2)
             {
-                return 500;
+                return 500 - gs.getTick();
             }
             else
             {
@@ -34,7 +35,7 @@ public class SoloBinaryHeuristic extends StateHeuristic {
         {
             if(gs.getPlayerPositions().get(1).y == 1)
             {
-                return 500;
+                return 500 - gs.getTick();
             }
             else
             {
