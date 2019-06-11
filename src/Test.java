@@ -1,3 +1,4 @@
+import core.GameStats;
 import players.ExampleAgent;
 import core.Game;
 import core.Player;
@@ -23,7 +24,8 @@ public class Test {
 
         GUI frame = new GUI(game, "cooperative-ai", false);
         WindowInput wi = new WindowInput();
-        game.run(frame, wi);
+        GameStats gameStats = game.run(frame, wi);
+        System.out.println(gameStats);
     }
 
 }

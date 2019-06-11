@@ -11,11 +11,13 @@ public class Game {
 
     private GameState gs;
     private ArrayList<Player> players;
+    private GameStats gameStats;
     private boolean visuals;
 
     public Game(Types.TILETYPE[][] board, ArrayList<Player> players) {
         this.gs = new GameState(board);
         this.players = players;
+        this.gameStats = new GameStats();
         this.visuals = Config.VISUALS;
         for (Player p : players)
         {
@@ -29,13 +31,13 @@ public class Game {
      * @param wi input for the window.
      * @return the results of the game, per player.
      */
-    public Types.RESULT[] run(GUI frame, WindowInput wi)
+    public GameStats run(GUI frame, WindowInput wi)
     {
         if (frame == null || wi == null)
             visuals = false;
 
         boolean firstEnd = true;
-        Types.RESULT[] results = null;
+        GameStats results = null;
 
         while(!gs.isEnded() || visuals && wi != null && !wi.windowClosed && !gs.isEnded()) {
             // Loop while window is still open, even if the game ended.
@@ -45,7 +47,7 @@ public class Game {
             // Check end of game
             if (firstEnd && gs.isEnded()) {
                 firstEnd = false;
-                results = terminate();
+                results = getGameStats();
 
                 if (!visuals) {
                     // The game has ended, end the loop if we're running without visuals.
@@ -66,7 +68,7 @@ public class Game {
 
         // The loop may have been broken out of before the game ended. Handle end-of-game:
         if (firstEnd) {
-            results = terminate();
+            results = getGameStats();
         }
 
         return results;
@@ -87,6 +89,8 @@ public class Game {
 
         // Advance the game state
         gs.next(actions);
+
+        gameStats.incrementTicks();
     }
 
     /**
@@ -104,27 +108,7 @@ public class Game {
         return actions;
     }
 
-
-    private Types.RESULT[] terminate() {
-        //Build the results array
-//        GameObject[] agents = gs.getAgents();
-        Types.RESULT[] results = new Types.RESULT[players.size()];
-//        for (int i = 0; i < NUM_PLAYERS; i++) {
-//            Avatar av = (Avatar) agents[i];
-//            results[i] = av.getWinner();
-//        }
-//
-//        // Call all agents' end-of-game method for post-processing. Agents receive their final reward.
-//        double[] finalRewards = getGameConfig().getRewards(getTick(), results);
-//        for (int i = 0; i < NUM_PLAYERS; i++) {
-//            Player p = players.get(i);
-//            p.result(finalRewards[i]);
-//        }
-//
-//        if (LOGGING_STATISTICS)
-//            gs.model.saveEventsStatistics(gameIdStr, seed);
-//
-//        System.out.println(Arrays.toString(results));
-        return results;
+    private GameStats getGameStats() {
+        return gameStats;
     }
 }
