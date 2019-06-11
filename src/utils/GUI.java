@@ -80,6 +80,6 @@ public class GUI extends JFrame {
      * Paints the GUI, to be called at every game tick.
      */
     public void paint() {
-        view.repaint();
+        view.paint(game.getBoard());
     }
 }

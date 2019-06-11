@@ -99,7 +99,7 @@ public class Game {
         for (int i = 0; i < numOfPlayers; i++) {
             Player p = players.get(i);
             // TODO Check if this player is still playing
-            actions[i] = p.act(gs);
+            actions[i] = p.act(gs.copy());
         }
         return actions;
     }
