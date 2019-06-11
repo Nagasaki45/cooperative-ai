@@ -21,35 +21,21 @@ public class GameState {
 
     public void addPlayer(int playerID)
     {
-        int y;
-        int x = board.length / 2;
-
-        if (playerID == 0) {
-            y = 1;
-            this.board[y][x] = Types.TILETYPE.AGENT0;
-        } else {
-            y = board.length - 2;
-            this.board[y][x] = Types.TILETYPE.AGENT1;
-        }
-
+        Vector2d boardSize = getBoardSize();
+        int x = boardSize.x / 2;
+        int y = (playerID == 0) ? 1: boardSize.y - 2;
         playerPositions.put(playerID, new Vector2d(x, y));
     }
 
     public void updatePlayerPositions( Map<Integer, Vector2d> newPlayerPositions ){
-
-        if(newPlayerPositions.get(0) != playerPositions.get(0) )
+        for (int i = 0; i < playerPositions.size(); i++)
         {
-            board[playerPositions.get(0).y][playerPositions.get(0).x] = Types.TILETYPE.PASSAGE;
-            board[newPlayerPositions.get(0).y][newPlayerPositions.get(0).x] = Types.TILETYPE.AGENT0;
-            playerPositions.put(0, newPlayerPositions.get(0));
+            Vector2d oldPosition = playerPositions.get(i);
+            Vector2d newPosition = newPlayerPositions.get(i);
+            board[oldPosition.y][oldPosition.x] = Types.TILETYPE.PASSAGE;
+            board[newPosition.y][newPosition.x] = (i == 0) ? Types.TILETYPE.AGENT0 : Types.TILETYPE.AGENT1;
         }
-
-        if(newPlayerPositions.get(1) != playerPositions.get(1) )
-        {
-            board[playerPositions.get(1).y][playerPositions.get(1).x] = Types.TILETYPE.PASSAGE;
-            board[newPlayerPositions.get(1).y][newPlayerPositions.get(1).x] = Types.TILETYPE.AGENT1;
-            playerPositions.put(1, newPlayerPositions.get(1));
-        }
+        playerPositions = newPlayerPositions;
     }
 
     public Map<Integer, Vector2d> getPlayerPositions(){
@@ -107,7 +93,7 @@ public class GameState {
             copy.playerPositions.put(entry.getKey(), entry.getValue());
         }
 
-        // Fopy tick
+        // Copy tick
         copy.tick = tick;
 
         return copy;
