@@ -12,7 +12,6 @@ public class GameState {
     private Types.TILETYPE[][] board;
     private Map<Integer, Vector2d> playerPositions;
     private Integer tick = 0;
-    private boolean gameEnded = false;
 
 
     public GameState(Types.TILETYPE[][] board) {
@@ -71,7 +70,14 @@ public class GameState {
 
     public boolean isEnded()
     {
-        return gameEnded;
+        for (boolean winner : getWinners())
+        {
+            if (!winner)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public Vector2d getBoardSize()
@@ -139,19 +145,6 @@ public class GameState {
 
         winners[0] = (playerPositions.get(0).y == (getBoardSize().y - 2));
         winners[1] = (playerPositions.get(1).y == 1);
-
-        boolean allWon = true;
-        for (boolean winner : winners)
-        {
-            if (!winner)
-            {
-                allWon = false;
-            }
-        }
-        if (allWon)
-        {
-            gameEnded = true;
-        }
 
         return winners;
     }
