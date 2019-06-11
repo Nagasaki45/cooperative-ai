@@ -9,7 +9,6 @@ public class GameView extends JComponent {
 
     private int cellSize, gridSize;
     private Types.TILETYPE[][] objs;
-    private int[][] bombLife;
     private Image backgroundImg;
 
     /**
@@ -22,7 +21,7 @@ public class GameView extends JComponent {
         this.cellSize = cellSize;
         this.gridSize = objects.length;
         this.dimension = new Dimension(gridSize * cellSize, gridSize * cellSize);
-        copyObjects(objects, new int[gridSize][gridSize]);
+        copyObjects(objects);
         backgroundImg = Types.TILETYPE.PASSAGE.getImage();
     }
 
@@ -75,14 +74,18 @@ public class GameView extends JComponent {
         gphx.drawImage(img, r.x, r.y, (int) (w*scaleX), (int) (h*scaleY), null);
     }
 
-    private void copyObjects(Types.TILETYPE[][] objects, int[][] bombs)
+    void paint(Types.TILETYPE[][] board)
+    {
+        copyObjects(board);
+        this.repaint();
+    }
+
+    private void copyObjects(Types.TILETYPE[][] board)
     {
         objs = new Types.TILETYPE[gridSize][gridSize];
-        bombLife = new int[gridSize][gridSize];
 
         for (int i = 0; i < gridSize; ++i) {
-            System.arraycopy(objects[i], 0, objs[i], 0, gridSize);
-            System.arraycopy(bombs[i], 0, bombLife[i], 0, gridSize);
+            System.arraycopy(board[i], 0, objs[i], 0, gridSize);
         }
     }
 
