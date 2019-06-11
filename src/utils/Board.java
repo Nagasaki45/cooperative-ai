@@ -118,11 +118,11 @@ public class Board {
 //                      "xxxxxxxxxxx\n" +
 //                      "x         x\n" +
 //                      "x         x\n" +
-//                      "x         x\n" +
 //                      "xxxxx xxxxx\n" +
 //                      "xxxxx xxxxx\n" +
 //                      "xxxxx xxxxx\n" +
-//                      "x         x\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "xxxxx xxxxx\n" +
 //                      "x         x\n" +
 //                      "x         x\n" +
 //                      "xxxxxxxxxxx\n"
