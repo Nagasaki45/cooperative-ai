@@ -1,18 +1,16 @@
 package players.mcts;
 
 import core.GameState;
+import players.heuristics.JointDistanceHeuristic;
+import players.heuristics.SoloDistanceHeuristic;
 import players.heuristics.JointBinaryHeuristic;
 import players.heuristics.SoloBinaryHeuristic;
-import players.heuristics.JointBinaryTimedHeuristic;
-import players.heuristics.SoloBinaryTimedHeuristic;
 import players.heuristics.StupidHeuristic;
 import players.heuristics.StateHeuristic;
 import utils.ElapsedCpuTimer;
 import utils.Types;
 import utils.Utils;
-import utils.Vector2d;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -86,10 +84,10 @@ public class SingleTreeNode
             this.rootStateHeuristic = new SoloBinaryHeuristic(gs,playerID,m_rnd);
         else if(params.heuristic_method == params.JOINT_BINARY_HEURISTIC)
             this.rootStateHeuristic = new JointBinaryHeuristic(gs,playerID,m_rnd);
-        else if(params.heuristic_method == params.SOLO_BINARY_TIMED_HEURISTIC)
-            this.rootStateHeuristic = new SoloBinaryTimedHeuristic(gs,playerID,m_rnd);
-        else if(params.heuristic_method == params.JOINT_BINARY_TIMED_HEURISTIC)
-            this.rootStateHeuristic = new JointBinaryTimedHeuristic(gs,playerID,m_rnd);
+        else if(params.heuristic_method == params.SOLO_DISTANCE_HEURISTIC)
+            this.rootStateHeuristic = new SoloDistanceHeuristic(gs,playerID,m_rnd);
+        else if(params.heuristic_method == params.JOINT_DISTANCE_HEURISTIC)
+            this.rootStateHeuristic = new JointDistanceHeuristic(gs,playerID,m_rnd);
 //        else if (params.heuristic_method == params.ADVANCED_HEURISTIC) // New method: combined heuristics
 //            this.rootStateHeuristic = new AdvancedHeuristic(gs, m_rnd);
     }
