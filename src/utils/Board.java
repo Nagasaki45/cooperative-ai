@@ -78,3 +78,80 @@ public class Board {
         );
     }
 }
+
+
+//                      "xxxxxxxxxxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxxxxxxxxxx\n"
+//
+//
+//                      "xxxxxxxxxxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxxxxxxxxxx\n"
+//
+//
+//                      "xxxxxxxxxxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxx xxx xxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxxxxxxxxxx\n"
+//
+//                      "xxxxxxxxxxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xx xxxxxxxx\n" +
+//                      "xx       xx\n" +
+//                      "xxxxxxxx xx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxxxxxxxxxx\n"
+//
+//
+//                      "xxxxxxxxxxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "xxxx   xxxx\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxxxxxxxxxx\n"
+//
+//
+//                      "xxxxxxxxxxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "xxxx   xxxx\n" +
+//                      "xxxx   xxxx\n" +
+//                      "xxxx   xxxx\n" +
+//                      "xxxxx xxxxx\n" +
+//                      "x         x\n" +
+//                      "x         x\n" +
+//                      "xxxxxxxxxxx\n"
