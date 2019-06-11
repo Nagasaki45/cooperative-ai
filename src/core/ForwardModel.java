@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class ForwardModel {
 
-    private static boolean validCrossing(Map<Integer, Vector2d> playerPositions, Map<Integer, Vector2d> newPlayerPosisitions, Types.ACTIONS[] actions) {
-        if (playerPositions.get(0) == newPlayerPosisitions.get(1)
-                || playerPositions.get(1) == newPlayerPosisitions.get(0)) {
+    private static boolean validCrossing(Map<Integer, Vector2d> playerPositions, Map<Integer, Vector2d> newPlayerPositions, Types.ACTIONS[] actions) {
+        if (playerPositions.get(0).equals(newPlayerPositions.get(1))
+                || playerPositions.get(1).equals(newPlayerPositions.get(0))) {
             if (actions[0] == Types.ACTIONS.ACTION_RIGHT && actions[1] == Types.ACTIONS.ACTION_LEFT
                     || actions[0] == Types.ACTIONS.ACTION_LEFT && actions[1] == Types.ACTIONS.ACTION_RIGHT
                     || actions[0] == Types.ACTIONS.ACTION_UP && actions[1] == Types.ACTIONS.ACTION_DOWN
@@ -44,7 +44,7 @@ public class ForwardModel {
             newPlayerPositions.put(i, targetPos);
         }
 
-        if(newPlayerPositions.get(0) != newPlayerPositions.get(1) && validCrossing(playerPositions, newPlayerPositions, actions)) {
+        if(!newPlayerPositions.get(0).equals(newPlayerPositions.get(1)) && validCrossing(playerPositions, newPlayerPositions, actions)) {
             gs.updatePlayerPositions(newPlayerPositions);
         }
 
