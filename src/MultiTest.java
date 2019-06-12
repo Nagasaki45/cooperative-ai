@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import core.Config;
 import core.Game;
 import core.GameLogger;
+import players.mcts.MCTSParams;
 import players.mcts.MCTSPlayer;
 import players.optimisers.ParameterizedPlayer;
 import utils.Board;
@@ -19,21 +20,29 @@ public class MultiTest {
 
         ArrayList<GameLogger> gameLoggers = new ArrayList<>();
 
-        for (int boardID = 0; boardID < Board.NUM_OF_BOARDS; boardID++) {
+        for (int heuristicID = 1; heuristicID < 5; heuristicID++)
+        {
+            System.out.println("heuristic " + heuristicID);
+            for (int boardID = 0; boardID < Board.NUM_OF_BOARDS; boardID++)
+            {
+                System.out.println("board " + boardID);
+                for (int i = 0; i < Config.MULTI_TESTS_ITERATIONS_PER_BOARD; i++)
+                {
+                    // Game parameters
+                    ArrayList<ParameterizedPlayer> players = new ArrayList<ParameterizedPlayer>();
+                    MCTSParams params = new MCTSParams();
+                    params.heuristic_method = heuristicID;
+                    players.add(new MCTSPlayer(0, 0, 0.99, params));
+                    players.add(new MCTSPlayer(1, 1, 0.99, params));
+                    Game game = new Game(boardID, players);
 
-            for (int i = 0; i < Config.MULTI_TESTS_ITERATIONS_PER_BOARD; i++) {
-                // Game parameters
-                ArrayList<ParameterizedPlayer> players = new ArrayList<ParameterizedPlayer>();
-                players.add(new MCTSPlayer(0, 0, 0.99));
-                players.add(new MCTSPlayer(1, 1, 0.99));
-                Game game = new Game(boardID, players);
+                    GameLogger gameLogger = game.run(null, null);
+                    System.out.print(".");
 
-                GameLogger gameLogger = game.run(null, null);
-                System.out.print(".");
-
-                gameLoggers.add(gameLogger);
+                    gameLoggers.add(gameLogger);
+                }
+                System.out.print("\n");
             }
-            System.out.print("\n");
         }
 
         Gson gson = new Gson();
