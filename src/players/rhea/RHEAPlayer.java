@@ -13,9 +13,10 @@ public class RHEAPlayer extends ParameterizedPlayer {
     private RollingHorizonPlayer player;
     private GameInterface gInterface;
     private RHEAParams params;
+    private double discountFactor;
 
     public RHEAPlayer(long seed, int playerID, double discountFactor) {
-        this(seed, playerID, discountFactor,null);
+        this(seed, playerID, discountFactor,new RHEAParams());
     }
 
     public RHEAPlayer(long seed, int playerID, double discountFactor, RHEAParams params) {
@@ -23,6 +24,7 @@ public class RHEAPlayer extends ParameterizedPlayer {
 
             this.seed = seed;
             this.playerID = playerID;
+            this.discountFactor = discountFactor;
 
             // Make sure we have parameters
             this.params = (RHEAParams) getParameters();
