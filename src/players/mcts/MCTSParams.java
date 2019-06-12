@@ -38,6 +38,16 @@ public class MCTSParams implements ParameterSet {
     public int num_fmcalls = 20000;
     public int num_time = 40;
 
+    public void setOptimizedParams(int heuristic_method)
+    {
+        switch (heuristic_method) {
+            case 1: translate(new int[]{0, 3, 1, 1}); break;
+            case 2: translate(new int[]{4, 3, 2, 2}); break;
+            case 3: translate(new int[]{1, 4, 3, 1}); break;
+            case 4: translate(new int[]{0, 4, 4, 2}); break;
+        }
+    }
+
     @Override
     public void setParameterValue(String param, Object value) {
         switch(param) {

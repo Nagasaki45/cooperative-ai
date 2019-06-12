@@ -13,11 +13,13 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MultiTest {
 
     public static void main(String[] args) {
 
+        Random random = new Random();
         ArrayList<GameLogger> gameLoggers = new ArrayList<>();
 
         for (int heuristicID = 1; heuristicID < 5; heuristicID++)
@@ -31,9 +33,9 @@ public class MultiTest {
                     // Game parameters
                     ArrayList<ParameterizedPlayer> players = new ArrayList<ParameterizedPlayer>();
                     MCTSParams params = new MCTSParams();
-                    params.heuristic_method = heuristicID;
-                    players.add(new MCTSPlayer(0, 0, params));
-                    players.add(new MCTSPlayer(1, 1, params));
+                    params.setOptimizedParams(heuristicID);
+                    players.add(new MCTSPlayer(random.nextInt(), 0, params));
+                    players.add(new MCTSPlayer(random.nextInt(), 1, params));
                     Game game = new Game(boardID, players);
 
                     GameLogger gameLogger = game.run(null, null);
