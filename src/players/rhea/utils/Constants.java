@@ -52,8 +52,9 @@ public class Constants {
     public final static int EVALUATE_UPDATE_MAX = 4;  // Optimist
 
     // Heuristics
-    public final static int WIN_SCORE_HEURISTIC = 0;
-    public final static int PLAYER_COUNT_HEURISTIC = 1;
-    public final static int CUSTOM_HEURISTIC = 2;
-    public final static int ADVANCED_HEURISTIC = 3;
+    public final static int STUPID_HEURISTIC = 0;
+    public final static int SOLO_BINARY_HEURISTIC = 1;
+    public final static int SOLO_DISTANCE_HEURISTIC = 2;
+    public final static int JOINT_BINARY_HEURISTIC = 3;
+    public final static int JOINT_DISTANCE_HEURISTIC = 4;
 }

@@ -46,7 +46,14 @@ public class GameInterface {
         this.elapsedTimer = elapsedTimer;
         fmBudget.reset();
         initStateInfo();
-        stateHeuristic = new SoloBinaryHeuristic(rootState, this.playerID, this.random);
+
+        switch (params.heurisic_type) {
+            case SOLO_BINARY_HEURISTIC: stateHeuristic = new SoloBinaryHeuristic(rootState, this.playerID, this.random); break;
+            case SOLO_DISTANCE_HEURISTIC: stateHeuristic = new SoloDistanceHeuristic(rootState, this.playerID, this.random); break;
+            case JOINT_BINARY_HEURISTIC: stateHeuristic = new JointBinaryHeuristic(rootState, this.playerID, this.random); break;
+            case JOINT_DISTANCE_HEURISTIC: stateHeuristic = new JointDistanceHeuristic(rootState, this.playerID, this.random); break;
+            default: stateHeuristic = new SoloBinaryHeuristic(rootState, this.playerID, this.random); break;
+        }
     }
 
     /**

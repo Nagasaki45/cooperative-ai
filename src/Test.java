@@ -16,10 +16,11 @@ public class Test {
     public static void main(String[] args) {
 
         // Game parameters
-        Types.TILETYPE[][] board = Board.simpleBoard();
+        Types.TILETYPE[][] board = Board.simpleBoard(1); // ids: 0 - 6 (total length 7)
         ArrayList<Player> players = new ArrayList<Player>();
         players.add(new MCTSPlayer(0,0));
         //players.add(new MCTSPlayer(1,1));
+        //players.add(new RHEAPlayer(0,0));
         players.add(new RHEAPlayer(1,1));
         //players.add(new ExampleAgent(0,1));
         Game game = new Game(board, players);

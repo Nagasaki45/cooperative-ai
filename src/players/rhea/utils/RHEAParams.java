@@ -25,8 +25,8 @@ public class RHEAParams implements ParameterSet {
 
     // EA parameters
     public int population_size = 1;
-    public int individual_length = 42;
-    public int mcts_depth = 42;
+    public int individual_length = 182;
+    public int mcts_depth = 182;
     public int gene_size = 1;  // Should be a divisor of individual_length. A gene may contain more than 1 action.
     public int offspring_count = 1;
     public int no_elites = 1;
@@ -38,7 +38,7 @@ public class RHEAParams implements ParameterSet {
     public int evaluate_act = EVALUATE_ACT_LAST;
     public int evaluate_update = EVALUATE_UPDATE_AVERAGE;
     public double evaluate_discount = 0.99;
-    public int heurisic_type = CUSTOM_HEURISTIC;
+    public int heurisic_type = SOLO_BINARY_HEURISTIC;
     public boolean reevaluate_pop = true;
 
     // Shift settings
@@ -95,8 +95,8 @@ public class RHEAParams implements ParameterSet {
 //        parameterValues.put("evaluate_update", new Integer[]{EVALUATE_UPDATE_RAW, EVALUATE_UPDATE_DELTA,
 //                EVALUATE_UPDATE_AVERAGE, EVALUATE_UPDATE_MIN, EVALUATE_UPDATE_MAX});
         parameterValues.put("evaluate_discount", new Double[]{0.9, 0.95, 0.99, 1.0});
-        parameterValues.put("heuristic_type", new Integer[]{WIN_SCORE_HEURISTIC, PLAYER_COUNT_HEURISTIC,
-                CUSTOM_HEURISTIC, ADVANCED_HEURISTIC});
+        parameterValues.put("heuristic_type", new Integer[]{SOLO_BINARY_HEURISTIC, SOLO_DISTANCE_HEURISTIC,
+                JOINT_BINARY_HEURISTIC, JOINT_DISTANCE_HEURISTIC});
 
         parameterValues.put("shift_buffer", new Boolean[]{false, true});
 //        parameterValues.put("shift_discount", new Double[]{0.9, 0.95, 0.99, 1.0});
@@ -420,8 +420,8 @@ public class RHEAParams implements ParameterSet {
         names.put("crossover_type", new String[]{"CROSS_UNIFORM", "CROSS_ONE_POINT", "CROSS_TWO_POINT"});
         names.put("init_type", new String[]{"INIT_RANDOM", "INIT_1SLA", "INIT_MCTS"});
         names.put("frame_skip_type", new String[]{"SKIP_REPEAT", "SKIP_NULL", "SKIP_RANDOM", "SKIP_SEQUENCE"});
-        names.put("heuristic_type", new String[]{"WIN_SCORE_HEURISTIC", "PLAYER_COUNT_HEURISTIC", "CUSTOM_HEURISTIC",
-                "ADVANCED_HEURISTIC"});
+        names.put("heuristic_type", new String[]{"SOLO_BINARY_HEURISTIC", "SOLO_DISTANCE_HEURISTIC", "JOINT_BINARY_HEURISTIC",
+                "JOINT_DISTANCE_HEURISTIC"});
 //        names.put("draw_code", new String[]{"DRAW_EXPLORATION", "DRAW_THINKING", "DRAW_ALL"});
         return names;
     }

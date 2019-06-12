@@ -78,9 +78,7 @@ public class SingleTreeNode
     void setRootGameState(GameState gs)
     {
         this.rootState = gs;
-        if (params.heuristic_method == params.STUPID_HEURISTIC)
-            this.rootStateHeuristic = new StupidHeuristic(gs,playerID,m_rnd);
-        else if(params.heuristic_method == params.SOLO_BINARY_HEURISTIC)
+         if(params.heuristic_method == params.SOLO_BINARY_HEURISTIC)
             this.rootStateHeuristic = new SoloBinaryHeuristic(gs,playerID,m_rnd);
         else if(params.heuristic_method == params.JOINT_BINARY_HEURISTIC)
             this.rootStateHeuristic = new JointBinaryHeuristic(gs,playerID,m_rnd);

@@ -61,9 +61,10 @@ public class Board {
         return stringBuilder.toString();
     }
 
-    public static Types.TILETYPE[][] simpleBoard() {
-        return parseString(getStringByID(1));
+    public static Types.TILETYPE[][] simpleBoard(int id) {
+        return parseString(getStringByID(id));
     }
+
 
     public static String getStringByID(int id){
 
