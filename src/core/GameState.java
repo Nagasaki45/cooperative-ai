@@ -12,6 +12,7 @@ public class GameState {
     private Types.TILETYPE[][] board;
     private Map<Integer, Vector2d> playerPositions;
     private Integer tick = 0;
+    private int impossibleActionCount = 0;
 
 
     public GameState(Types.TILETYPE[][] board) {
@@ -140,5 +141,15 @@ public class GameState {
 
 
         return winners;
+    }
+
+    public void incrementImpossibleActionCount()
+    {
+        impossibleActionCount++;
+    }
+
+    public int getImpossibleActionCount()
+    {
+        return impossibleActionCount;
     }
 }

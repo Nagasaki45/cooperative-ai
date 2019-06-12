@@ -13,23 +13,21 @@ public class GameLogger
     private String board;
     private ParameterSet[] agentsParams;
     private int ticks;
+    private int impossibleActionCount;
 
     public GameLogger(Types.TILETYPE[][] board, ParameterSet[] agentsParams)
     {
         this.board = Board.toString(board);
         this.agentsParams = agentsParams;
         ticks = 0;
-    }
-
-    public void incrementTicks()
-    {
-        ticks++;
+        impossibleActionCount = 0;
     }
 
     public Map<String, Object> getJsonReady()
     {
         Map<String, Object> toReturn = new HashMap<>();
         toReturn.put("ticks", ticks);
+        toReturn.put("inpossibleActionCount", impossibleActionCount);
         for (int i = 0; i < agentsParams.length; i++)
         {
             ParameterSet params = agentsParams[i];
@@ -55,5 +53,11 @@ public class GameLogger
             }
         }
         return stringBuilder.toString();
+    }
+
+    public void update(GameState gs)
+    {
+        this.ticks = gs.getTick();
+        this.impossibleActionCount = gs.getImpossibleActionCount();
     }
 }

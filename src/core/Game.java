@@ -76,6 +76,8 @@ public class Game {
             results = getGameLogger();
         }
 
+        results.update(gs);
+
         return results;
     }
 
@@ -94,8 +96,6 @@ public class Game {
 
         // Advance the game state
         gs.next(actions);
-
-        gameLogger.incrementTicks();
     }
 
     /**

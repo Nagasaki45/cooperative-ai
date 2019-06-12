@@ -40,7 +40,9 @@ public class ForwardModel {
         if(!newPlayerPositions.get(0).equals(newPlayerPositions.get(1)) && validCrossing(playerPositions, newPlayerPositions)) {
             gs.updatePlayerPositions(newPlayerPositions);
         }
-
-
+        else
+        {
+            gs.incrementImpossibleActionCount();
+        }
     }
 }
