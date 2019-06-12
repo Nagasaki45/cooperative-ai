@@ -14,35 +14,33 @@ public class RHEAPlayer extends ParameterizedPlayer {
     private GameInterface gInterface;
     private RHEAParams params;
 
-    public RHEAPlayer(long seed, int playerID) {
-        this(seed, playerID, null);
+    public RHEAPlayer(long seed, int playerID, double discountFactor) {
+        this(seed, playerID, discountFactor,null);
     }
 
-    public RHEAPlayer(long seed, int playerID, RHEAParams params) {
+    public RHEAPlayer(long seed, int playerID, double discountFactor, RHEAParams params) {
         super(seed, playerID, params);
-        reset(seed, playerID);
+
+            this.seed = seed;
+            this.playerID = playerID;
+
+            // Make sure we have parameters
+            this.params = (RHEAParams) getParameters();
+            if (this.params == null) {
+                this.params = new RHEAParams();
+            }
+
+            // Set up random generator
+            Random randomGenerator = new Random(seed);
+
+            // Create interface with game
+            gInterface = new GameInterface(this.params, randomGenerator, playerID);
+
+            // Set up player
+            player = new RollingHorizonPlayer(randomGenerator, this.params, gInterface);
+
     }
 
-    @Override
-    public void reset(long seed, int playerID) {
-        this.seed = seed;
-        this.playerID = playerID;
-
-        // Make sure we have parameters
-        this.params = (RHEAParams) getParameters();
-        if (this.params == null) {
-            this.params = new RHEAParams();
-        }
-
-        // Set up random generator
-        Random randomGenerator = new Random(seed);
-
-        // Create interface with game
-        gInterface = new GameInterface(this.params, randomGenerator, playerID);
-
-        // Set up player
-        player = new RollingHorizonPlayer(randomGenerator, this.params, gInterface);
-    }
 
     @Override
     public Types.ACTIONS act(GameState gs) {
@@ -61,6 +59,6 @@ public class RHEAPlayer extends ParameterizedPlayer {
 
     @Override
     public ParameterizedPlayer copy() {
-        return new RHEAPlayer(seed, playerID, params);
+        return new RHEAPlayer(seed, playerID, discountFactor, params);
     }
 }
