@@ -2,6 +2,8 @@ package utils;
 
 
 public class Board {
+    public static final int NUM_OF_BOARDS = 7;
+
     public static Types.TILETYPE[][] parseString(String string)
     {
         String[] lines = string.split("\\r?\\n");
