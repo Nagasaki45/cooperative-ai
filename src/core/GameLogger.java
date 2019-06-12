@@ -10,58 +10,12 @@ import java.util.Map;
 
 public class GameLogger
 {
-    private String board;
+    private GameState gs;
     private ParameterSet[] agentsParams;
-    private int ticks;
-    private int impossibleActionCount;
-    private int firstWinnerTick;
 
-    public GameLogger(Types.TILETYPE[][] board, ParameterSet[] agentsParams)
+    public GameLogger(GameState gs, ParameterSet[] agentsParams)
     {
-        this.board = Board.toString(board);
+        this.gs = gs;
         this.agentsParams = agentsParams;
-        ticks = 0;
-        impossibleActionCount = 0;
-        firstWinnerTick = -1;
-    }
-
-    public Map<String, Object> getJsonReady()
-    {
-        Map<String, Object> toReturn = new HashMap<>();
-        toReturn.put("ticks", ticks);
-        toReturn.put("inpossibleActionCount", impossibleActionCount);
-        toReturn.put("firstWinnerTick", firstWinnerTick);
-        for (int i = 0; i < agentsParams.length; i++)
-        {
-            ParameterSet params = agentsParams[i];
-            Gson gson = new Gson();
-            toReturn.put("agent_" + i + "_params", gson.toJson(params));
-        }
-        toReturn.put("board", board);
-        return toReturn;
-    }
-
-    public String toString()
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Map.Entry<String, Object> entry : getJsonReady().entrySet())
-        {
-            if (entry.getKey() == "board")
-            {
-                stringBuilder.append((entry.getValue()));
-            }
-            else
-            {
-                stringBuilder.append(entry.getKey() + ":\t" + entry.getValue().toString() + "\n");
-            }
-        }
-        return stringBuilder.toString();
-    }
-
-    public void update(GameState gs)
-    {
-        this.ticks = gs.getTick();
-        this.impossibleActionCount = gs.getImpossibleActionCount();
-        this.firstWinnerTick = gs.getFirstWinnerTick();
     }
 }

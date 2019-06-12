@@ -1,5 +1,6 @@
 package core;
 
+import utils.Board;
 import utils.Types;
 import utils.Vector2d;
 
@@ -9,6 +10,7 @@ import java.util.Map;
 
 public class GameState {
 
+    private int boardID;
     private Types.TILETYPE[][] board;
     private Map<Integer, Vector2d> playerPositions;
     private Integer tick = 0;
@@ -16,8 +18,9 @@ public class GameState {
     private int firstWinnerTick = -1;
 
 
-    public GameState(Types.TILETYPE[][] board) {
-        this.board = board;
+    public GameState(int boardID) {
+        this.boardID = boardID;
+        this.board = Board.simpleBoard(this.boardID);
         this.playerPositions = new HashMap<Integer, Vector2d>();
     }
 
@@ -78,17 +81,7 @@ public class GameState {
     }
 
     public GameState copy() {
-        Vector2d boardSize = getBoardSize();
-        GameState copy = new GameState(new Types.TILETYPE[boardSize.y][boardSize.x]);
-
-        // Copy board
-        for (int y = 0; y < boardSize.y; y++)
-        {
-            for (int x = 0; x < boardSize.x; x++)
-            {
-                copy.board[y][x] = board[y][x];
-            }
-        }
+        GameState copy = new GameState(boardID);
 
         // Copy player positions
         copy.playerPositions = new HashMap<Integer, Vector2d>();
@@ -150,16 +143,6 @@ public class GameState {
     public void incrementImpossibleActionCount()
     {
         impossibleActionCount++;
-    }
-
-    public int getImpossibleActionCount()
-    {
-        return impossibleActionCount;
-    }
-
-    public int getFirstWinnerTick()
-    {
-        return firstWinnerTick;
     }
 
     private void updateFirstWinnerTick()

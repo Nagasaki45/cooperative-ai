@@ -13,21 +13,17 @@ public class Game {
 
     private GameState gs;
     private ArrayList<ParameterizedPlayer> players;
-    private GameLogger gameLogger;
     private boolean visuals;
 
-    public Game(Types.TILETYPE[][] board, ArrayList<ParameterizedPlayer> players) {
-        this.gs = new GameState(board);
+    public Game(int boardID, ArrayList<ParameterizedPlayer> players) {
+        this.gs = new GameState(boardID);
         this.players = players;
         this.visuals = Config.VISUALS;
 
-        ParameterSet[] agentsParams = new ParameterSet[players.size()];
         for (ParameterizedPlayer p : players)
         {
             this.gs.addPlayer(p.playerID);
-            agentsParams[p.playerID] = p.getParameters();
         }
-        this.gameLogger = new GameLogger(board, agentsParams);
     }
 
     /**
@@ -42,7 +38,6 @@ public class Game {
             visuals = false;
 
         boolean firstEnd = true;
-        GameLogger results = null;
 
         while(!gs.isEnded() || visuals && wi != null && !wi.windowClosed && !gs.isEnded()) {
             // Loop while window is still open, even if the game ended.
@@ -52,7 +47,6 @@ public class Game {
             // Check end of game
             if (firstEnd && gs.isEnded()) {
                 firstEnd = false;
-                results = getGameLogger();
 
                 if (!visuals) {
                     // The game has ended, end the loop if we're running without visuals.
@@ -71,14 +65,12 @@ public class Game {
             }
         }
 
-        // The loop may have been broken out of before the game ended. Handle end-of-game:
-        if (firstEnd) {
-            results = getGameLogger();
+        ParameterSet[] agentsParams = new ParameterSet[players.size()];
+        for (ParameterizedPlayer p : players)
+        {
+            agentsParams[p.playerID] = p.getParameters();
         }
-
-        results.update(gs);
-
-        return results;
+        return new GameLogger(this.gs, agentsParams);
     }
 
     public Types.TILETYPE[][] getBoard()
@@ -111,9 +103,5 @@ public class Game {
             actions[i] = p.act(gs.copy());
         }
         return actions;
-    }
-
-    private GameLogger getGameLogger() {
-        return gameLogger;
     }
 }

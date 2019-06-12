@@ -23,17 +23,17 @@ public class MultiTest {
 
             for (int i = 0; i < Config.MULTI_TESTS_ITERATIONS_PER_BOARD; i++) {
                 // Game parameters
-                Types.TILETYPE[][] board = Board.simpleBoard(boardID);
                 ArrayList<ParameterizedPlayer> players = new ArrayList<ParameterizedPlayer>();
                 players.add(new MCTSPlayer(0, 0, 0.99));
                 players.add(new MCTSPlayer(1, 1, 0.99));
-                Game game = new Game(board, players);
+                Game game = new Game(boardID, players);
 
                 GameLogger gameLogger = game.run(null, null);
-                System.out.println(gameLogger);
+                System.out.print(".");
 
                 gameLoggers.add(gameLogger);
             }
+            System.out.print("\n");
         }
 
         Gson gson = new Gson();
