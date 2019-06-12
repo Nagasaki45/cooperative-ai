@@ -1,8 +1,7 @@
-import core.GameStats;
-import players.ExampleAgent;
+import core.GameLogger;
 import core.Game;
-import core.Player;
 import players.mcts.MCTSPlayer;
+import players.optimisers.ParameterizedPlayer;
 import utils.Board;
 import utils.GUI;
 import utils.Types;
@@ -16,7 +15,7 @@ public class Test {
 
         // Game parameters
         Types.TILETYPE[][] board = Board.simpleBoard();
-        ArrayList<Player> players = new ArrayList<Player>();
+        ArrayList<ParameterizedPlayer> players = new ArrayList<ParameterizedPlayer>();
         players.add(new MCTSPlayer(0,0));
         players.add(new MCTSPlayer(1,1));
         //players.add(new ExampleAgent(0,1));
@@ -24,8 +23,8 @@ public class Test {
 
         GUI frame = new GUI(game, "cooperative-ai", false);
         WindowInput wi = new WindowInput();
-        GameStats gameStats = game.run(frame, wi);
-        System.out.println(gameStats);
+        GameLogger gameLogger = game.run(frame, wi);
+        System.out.println(gameLogger);
     }
 
 }

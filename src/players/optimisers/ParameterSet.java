@@ -124,4 +124,22 @@ public interface ParameterSet {
             printParameter(c, depth + 1);
         }
     }
+
+    default Map<String, Object> getJsonReady()
+    {
+        Map<String, Object> toReturn = new HashMap<>();
+        for (String parameterName : getParameters())
+        {
+            Object value = getParameterValue(parameterName);
+            try {
+                String interpreted = interpret(parameterName, (int) value);
+                if (null != interpreted)
+                {
+                    value = interpreted;
+                }
+            } catch (ClassCastException e) {}
+            toReturn.put(parameterName, value);
+        }
+        return toReturn;
+    }
 }

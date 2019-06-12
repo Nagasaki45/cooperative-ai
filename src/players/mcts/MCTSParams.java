@@ -87,7 +87,7 @@ public class MCTSParams implements ParameterSet {
     @Override
     public Map<String, String[]> constantNames() {
         HashMap<String, String[]> names = new HashMap<>();
-        names.put("heuristic_method", new String[]{"CUSTOM_HEURISTIC", "ADVANCED_HEURISTIC"});
+        names.put("heuristic_method", new String[]{"STUPID_HEURISTIC", "SOLO_BINARY_HEURISTIC", "JOINT_BINARY_HEURISTIC", "SOLO_BINARY_TIMED_HEURISTIC", "JOINT_BINARY_TIMED_HEURISTIC"});
         return names;
     }
 }

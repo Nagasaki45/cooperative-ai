@@ -4,8 +4,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Types {
-    public static int MAX_GAME_TICKS = 500;
-    public static int FRAME_DELAY = 250;
     public enum TILETYPE {
 
         //Types and IDs
