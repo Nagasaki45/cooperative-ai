@@ -31,12 +31,8 @@ public class Board {
     public static String toString(Types.TILETYPE[][] board)
     {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < board.length+2; i++) {
-            stringBuilder.append("*");
-        }
-        stringBuilder.append("\n");
+
         for (Types.TILETYPE[] gameObjects : board) {
-            stringBuilder.append("*");
             for (Types.TILETYPE type : gameObjects) {
                 if (type.getKey() < Types.TILETYPE.AGENT0.getKey() && type.getKey() > 0)
                     stringBuilder.append(type.getKey());
@@ -51,13 +47,9 @@ public class Board {
                         stringBuilder.append("-");
                 }
             }
+            stringBuilder.append("\n");
+        }
 
-            stringBuilder.append("*\n");
-        }
-        for (int i = 0; i < board.length + 2; i++) {
-            stringBuilder.append("*");
-        }
-        stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 
