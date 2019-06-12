@@ -19,7 +19,7 @@ public class Test {
         ArrayList<ParameterizedPlayer> players = new ArrayList<ParameterizedPlayer>();
         players.add(new MCTSPlayer(0,0, 0.99));
         players.add(new MCTSPlayer(1,1,0.99));
-        players.add(new RHEAPlayer(1,1,0.99));
+        //players.add(new RHEAPlayer(1,1,0.99));
         //players.add(new ExampleAgent(0,1));
         Game game = new Game(board, players);
 
