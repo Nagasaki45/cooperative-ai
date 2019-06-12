@@ -6,6 +6,7 @@ import evodef.EvolutionLogger;
 import evodef.FitnessSpace;
 import evodef.NoisySolutionEvaluator;
 import evodef.SearchSpace;
+import players.mcts.MCTSParamsWithoutHeuristic;
 import players.mcts.MCTSPlayer;
 import utils.Board;
 
@@ -62,17 +63,22 @@ public class EvaluateCooperation implements NoisySolutionEvaluator, SearchSpace,
         for (int boardID = 0; boardID < Board.NUM_OF_BOARDS; boardID++)
         {
             ArrayList<ParameterizedPlayer> players = new ArrayList<ParameterizedPlayer>();
-            players.add(new MCTSPlayer(random.nextInt(),0));
-            players.add(new MCTSPlayer(random.nextInt(),1));
+            if (heuristicID == -1)
+            {
+                players.add(new MCTSPlayer(random.nextInt(), 0));
+                players.add(new MCTSPlayer(random.nextInt(), 1));
+            }
+            else
+            {
+                players.add(new MCTSPlayer(random.nextInt(), 0, new MCTSParamsWithoutHeuristic()));
+                players.add(new MCTSPlayer(random.nextInt(), 1, new MCTSParamsWithoutHeuristic()));
+            }
 
             // Translate the given parameters, assign them to the player.
             for (ParameterizedPlayer p : players)
             {
-                p.translateParameters(a);
-                if (heuristicID != -1)
-                {
-                    p.getParameters().setParameterValue("heuristic_method", heuristicID);
-                }
+                p.getParameters().setParameterValue("heuristic_method", heuristicID);
+                p.translateParameters(a);  // Doesn't affect heuristic for MCTSParamsWithoutHeuristic
             }
             Game game = new Game(boardID, players);
 

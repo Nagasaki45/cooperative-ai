@@ -2,6 +2,7 @@ import ntbea.NTupleBanditEA;
 import ntbea.NTupleSystem;
 import ntbea.NTupleSystemReport;
 import players.mcts.MCTSParams;
+import players.mcts.MCTSParamsWithoutHeuristic;
 import players.optimisers.EvaluateCooperation;
 import utilities.ElapsedTimer;
 
@@ -20,7 +21,7 @@ public class RunHeuristicSpecificNTBEA {
     public static void main(String[] args) {
 
         // Optimising parameters
-        MCTSParams parameterSet = new MCTSParams();
+        MCTSParams parameterSet = new MCTSParamsWithoutHeuristic();
         Map<String, Object[]> params = parameterSet.getParameterValues();
         ArrayList<String> paramList = parameterSet.getParameters();
 
@@ -57,6 +58,7 @@ public class RunHeuristicSpecificNTBEA {
             System.out.println("Solution returned: " + Arrays.toString(solution));
             System.out.println("Solution fitness:  " + problem.trueFitness(solution));
             System.out.println(timer);
+            System.out.println();
         }
     }
 }
