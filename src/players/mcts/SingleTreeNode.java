@@ -311,7 +311,7 @@ public class SingleTreeNode
             thisDepth++;
         }
 
-        return rootStateHeuristic.evaluateState(state) * Math.pow(0.99,thisDepth);
+        return rootStateHeuristic.evaluateState(state) * Math.pow(this.discountFactor,thisDepth);
     }
 
 //    /**
