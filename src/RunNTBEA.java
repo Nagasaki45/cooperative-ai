@@ -13,6 +13,9 @@ import java.util.Map;
 public class RunNTBEA {
 
     public static final int NUM_OF_EVALUATIONS = 3;  // Each evaluation averages ticks on all boards
+    public static final double NOISE = 1.0;
+    public static final int K_EXPLORE = 2;
+    public static final double EPSILON = 0.5;
 
     public static void main(String[] args) {
 
@@ -28,11 +31,10 @@ public class RunNTBEA {
             }
         }
 
-        EvaluateCooperation problem = new EvaluateCooperation(possibleValues, 0.5);
+        EvaluateCooperation problem = new EvaluateCooperation(possibleValues, NOISE);
 
-        double kExplore = 2;
-        double epsilon = 0.5;
-        NTupleBanditEA banditEA = new NTupleBanditEA().setKExplore(kExplore).setEpsilon(epsilon);
+
+        NTupleBanditEA banditEA = new NTupleBanditEA().setKExplore(K_EXPLORE).setEpsilon(EPSILON);
         // set a particlar NTuple System as the model
         // if this is not set, then it will use a default model
         NTupleSystem model = new NTupleSystem();
