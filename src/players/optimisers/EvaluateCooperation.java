@@ -21,13 +21,19 @@ public class EvaluateCooperation implements NoisySolutionEvaluator, SearchSpace,
     private ArrayList<Integer> m;
     private double noise;
     private EvolutionLogger logger;
+    private int heuristicID;
 
+    public EvaluateCooperation(ArrayList<Integer> possibleValues, double noise)
+    {
+        this(possibleValues, noise, -1);
+    }
 
-    public EvaluateCooperation(ArrayList<Integer> possibleValues, double noise) {
+    public EvaluateCooperation(ArrayList<Integer> possibleValues, double noise, int heuristicID) {
         this.nDims = possibleValues.size();
         this.m = possibleValues;
         this.noise = noise;
         logger = new EvolutionLogger();
+        this.heuristicID = heuristicID;
     }
 
     @Override
@@ -59,11 +65,14 @@ public class EvaluateCooperation implements NoisySolutionEvaluator, SearchSpace,
             players.add(new MCTSPlayer(random.nextInt(),0));
             players.add(new MCTSPlayer(random.nextInt(),1));
 
-            // Translate the given parameters, assign them to the player and call the reset() method to make sure all
-            // is initialized properly.
+            // Translate the given parameters, assign them to the player.
             for (ParameterizedPlayer p : players)
             {
                 p.translateParameters(a);
+                if (heuristicID != -1)
+                {
+                    p.getParameters().setParameterValue("heuristic_method", heuristicID);
+                }
             }
             Game game = new Game(boardID, players);
 
