@@ -18,4 +18,9 @@ public class GameLogger
         this.gs = gs;
         this.agentsParams = agentsParams;
     }
+
+    public GameState getGameState()
+    {
+        return gs;
+    }
 }
