@@ -30,6 +30,7 @@ public class MCTSParams implements ParameterSet {
     public double K = Math.sqrt(2);
     public int rollout_depth = 80;//10;
     public int heuristic_method = 1;
+    public double discount_factor = 0.99;
 
     // Budget settings
     public int stop_type = STOP_TIME;
@@ -43,6 +44,7 @@ public class MCTSParams implements ParameterSet {
             case "K": K = (double) value; break;
             case "rollout_depth": rollout_depth = (int) value; break;
             case "heuristic_method": heuristic_method = (int) value; break;
+            case "discount_factor": discount_factor = (double) value; break;
         }
     }
 
@@ -52,6 +54,7 @@ public class MCTSParams implements ParameterSet {
             case "K": return K;
             case "rollout_depth": return rollout_depth;
             case "heuristic_method": return heuristic_method;
+            case "discount_factor": return discount_factor;
         }
         return null;
     }
@@ -62,6 +65,7 @@ public class MCTSParams implements ParameterSet {
         paramList.add("K");
         paramList.add("rollout_depth");
         paramList.add("heuristic_method");
+        paramList.add("discount_factor");
         return paramList;
     }
 
@@ -71,6 +75,7 @@ public class MCTSParams implements ParameterSet {
         parameterValues.put("K", new Double[]{1.0, Math.sqrt(2), 2.0});
         parameterValues.put("rollout_depth", new Integer[]{5, 8, 10, 12, 15});
         parameterValues.put("heuristic_method", new Integer[]{STUPID_HEURISTIC, SOLO_BINARY_HEURISTIC, JOINT_BINARY_HEURISTIC, SOLO_DISTANCE_HEURISTIC, JOINT_DISTANCE_HEURISTIC});
+        parameterValues.put("discount_factor", new Double[]{0.5, 0.85, 0.95, 0.99, 1.0});
         return parameterValues;
     }
 

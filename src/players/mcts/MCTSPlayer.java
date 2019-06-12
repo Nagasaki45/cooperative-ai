@@ -15,7 +15,6 @@ public class MCTSPlayer extends ParameterizedPlayer {
      * Random generator.
      */
     private Random m_rnd;
-    private double discountFactor;
 
     /**
      * All actions available.
@@ -27,8 +26,8 @@ public class MCTSPlayer extends ParameterizedPlayer {
      */
     public MCTSParams params;
 
-    public MCTSPlayer(long seed, int id, double discountFactor) {
-        this(seed, id, discountFactor, new MCTSParams());
+    public MCTSPlayer(long seed, int id) {
+        this(seed, id, new MCTSParams());
     }
 
     /**
@@ -37,9 +36,8 @@ public class MCTSPlayer extends ParameterizedPlayer {
      * @param id ID of this player in the game.
      * @param params Parameters for MCTS.
      */
-    public MCTSPlayer(long seed, int id, double discountFactor, MCTSParams params) {
+    public MCTSPlayer(long seed, int id, MCTSParams params) {
         super(seed, id, params);
-        this.discountFactor = discountFactor;
         m_rnd = new Random(seed);
         this.params = (MCTSParams) getParameters();
 
@@ -67,7 +65,7 @@ public class MCTSPlayer extends ParameterizedPlayer {
         int num_actions = actions.length;
 
         // Root of the tree
-        SingleTreeNode m_root = new SingleTreeNode(params, m_rnd, num_actions, actions, playerID, discountFactor);
+        SingleTreeNode m_root = new SingleTreeNode(params, m_rnd, num_actions, actions, playerID);
         m_root.setRootGameState(gs);
 
         //Determine the action using MCTS...
@@ -82,6 +80,6 @@ public class MCTSPlayer extends ParameterizedPlayer {
 
     @Override
     public Player copy() {
-        return new MCTSPlayer(seed, playerID, discountFactor, params);
+        return new MCTSPlayer(seed, playerID, params);
     }
 }

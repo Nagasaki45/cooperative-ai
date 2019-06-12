@@ -28,7 +28,6 @@ public class SingleTreeNode
     private int num_actions;                    //Number of available actions
     private Types.ACTIONS[] actions;            //Array with all actions available
     private int playerID;
-    private double discountFactor;
 
     private StateHeuristic rootStateHeuristic;  //Heuristic to evaluate game states at the end of rollouts.
 
@@ -46,13 +45,13 @@ public class SingleTreeNode
 
 
     //Constructor of the MCTS node class.
-    SingleTreeNode(MCTSParams p, Random rnd, int num_actions, Types.ACTIONS[] actions, int playerID, double discountFactor) {
-        this(p, null, -1, rnd, num_actions, actions, playerID, 0, discountFactor, null);
+    SingleTreeNode(MCTSParams p, Random rnd, int num_actions, Types.ACTIONS[] actions, int playerID) {
+        this(p, null, -1, rnd, num_actions, actions, playerID, 0, null);
     }
 
     //Constructor of the MCTS node class.
     private SingleTreeNode(MCTSParams p, SingleTreeNode parent, int childIdx, Random rnd, int num_actions,
-                           Types.ACTIONS[] actions, int playerID, int fmCallsCount, double discountFactor, StateHeuristic sh) {
+                           Types.ACTIONS[] actions, int playerID, int fmCallsCount, StateHeuristic sh) {
         this.params = p;
         this.fmCallsCount = fmCallsCount;
         this.parent = parent;
@@ -63,7 +62,6 @@ public class SingleTreeNode
         children = new SingleTreeNode[num_actions];
         totValue = 0.0;
         this.childIdx = childIdx;
-        this.discountFactor = discountFactor;
         if(parent != null) {
             m_depth = parent.m_depth + 1;
             this.rootStateHeuristic = sh;
@@ -204,7 +202,7 @@ public class SingleTreeNode
         //state is now the next state, of the expanded node. Create a node with such state
         // and add it to the tree, as child of 'this'
         SingleTreeNode tn = new SingleTreeNode(params,this,bestAction,this.m_rnd,num_actions,
-                actions, playerID, fmCallsCount, discountFactor, rootStateHeuristic);
+                actions, playerID, fmCallsCount, rootStateHeuristic);
         children[bestAction] = tn;
 
         //Get the expanded node back.
@@ -311,7 +309,7 @@ public class SingleTreeNode
             thisDepth++;
         }
 
-        return rootStateHeuristic.evaluateState(state) * Math.pow(this.discountFactor,thisDepth);
+        return rootStateHeuristic.evaluateState(state) * Math.pow(params.discount_factor, thisDepth);
     }
 
 //    /**

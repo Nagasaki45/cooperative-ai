@@ -32,8 +32,8 @@ public class MultiTest {
                     ArrayList<ParameterizedPlayer> players = new ArrayList<ParameterizedPlayer>();
                     MCTSParams params = new MCTSParams();
                     params.heuristic_method = heuristicID;
-                    players.add(new MCTSPlayer(0, 0, 0.99, params));
-                    players.add(new MCTSPlayer(1, 1, 0.99, params));
+                    players.add(new MCTSPlayer(0, 0, params));
+                    players.add(new MCTSPlayer(1, 1, params));
                     Game game = new Game(boardID, players);
 
                     GameLogger gameLogger = game.run(null, null);
