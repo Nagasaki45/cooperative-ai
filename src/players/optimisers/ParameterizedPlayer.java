@@ -38,6 +38,5 @@ public abstract class ParameterizedPlayer extends Player {
     public final void setSeed(long seed) {
         this.seed = seed;
     }
-
     public abstract void reset(long seed, int playerID, double discountFactor);
 }

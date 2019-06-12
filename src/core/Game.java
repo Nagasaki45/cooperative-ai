@@ -1,5 +1,7 @@
 package core;
 
+import players.optimisers.ParameterSet;
+import players.optimisers.ParameterizedPlayer;
 import utils.GUI;
 import utils.Types;
 import utils.WindowInput;
@@ -10,19 +12,22 @@ import java.util.ArrayList;
 public class Game {
 
     private GameState gs;
-    private ArrayList<Player> players;
-    private GameStats gameStats;
+    private ArrayList<ParameterizedPlayer> players;
+    private GameLogger gameLogger;
     private boolean visuals;
 
-    public Game(Types.TILETYPE[][] board, ArrayList<Player> players) {
+    public Game(Types.TILETYPE[][] board, ArrayList<ParameterizedPlayer> players) {
         this.gs = new GameState(board);
         this.players = players;
-        this.gameStats = new GameStats();
         this.visuals = Config.VISUALS;
-        for (Player p : players)
+
+        ParameterSet[] agentsParams = new ParameterSet[players.size()];
+        for (ParameterizedPlayer p : players)
         {
             this.gs.addPlayer(p.playerID);
+            agentsParams[p.playerID] = p.getParameters();
         }
+        this.gameLogger = new GameLogger(board, agentsParams);
     }
 
     /**
@@ -31,13 +36,13 @@ public class Game {
      * @param wi input for the window.
      * @return the results of the game, per player.
      */
-    public GameStats run(GUI frame, WindowInput wi)
+    public GameLogger run(GUI frame, WindowInput wi)
     {
         if (frame == null || wi == null)
             visuals = false;
 
         boolean firstEnd = true;
-        GameStats results = null;
+        GameLogger results = null;
 
         while(!gs.isEnded() || visuals && wi != null && !wi.windowClosed && !gs.isEnded()) {
             // Loop while window is still open, even if the game ended.
@@ -47,7 +52,7 @@ public class Game {
             // Check end of game
             if (firstEnd && gs.isEnded()) {
                 firstEnd = false;
-                results = getGameStats();
+                results = getGameLogger();
 
                 if (!visuals) {
                     // The game has ended, end the loop if we're running without visuals.
@@ -59,7 +64,7 @@ public class Game {
             if (visuals && frame != null) {
                 frame.paint();
                 try {
-                    Thread.sleep(Types.FRAME_DELAY);
+                    Thread.sleep(Config.FRAME_DELAY);
                 } catch (InterruptedException e) {
                     System.out.println("EXCEPTION " + e);
                 }
@@ -68,7 +73,7 @@ public class Game {
 
         // The loop may have been broken out of before the game ended. Handle end-of-game:
         if (firstEnd) {
-            results = getGameStats();
+            results = getGameLogger();
         }
 
         return results;
@@ -90,7 +95,7 @@ public class Game {
         // Advance the game state
         gs.next(actions);
 
-        gameStats.incrementTicks();
+        gameLogger.incrementTicks();
     }
 
     /**
@@ -108,7 +113,7 @@ public class Game {
         return actions;
     }
 
-    private GameStats getGameStats() {
-        return gameStats;
+    private GameLogger getGameLogger() {
+        return gameLogger;
     }
 }

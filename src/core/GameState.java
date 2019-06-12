@@ -47,18 +47,16 @@ public class GameState {
 
     public void next(Types.ACTIONS[] actions) {
         tick++;
-        if(tick == Types.MAX_GAME_TICKS){
-            //END GAME
-        }
-        else{
-            ForwardModel.applyActions(this, actions);
-        }
-
-
+        ForwardModel.applyActions(this, actions);
     }
 
     public boolean isEnded()
     {
+        if (tick >= Config.MAX_GAME_TICKS)
+        {
+            return true;
+        }
+
         for (boolean winner : getWinners())
         {
             if (!winner)

@@ -1,8 +1,7 @@
-import core.GameStats;
-import players.ExampleAgent;
+import core.GameLogger;
 import core.Game;
-import core.Player;
 import players.mcts.MCTSPlayer;
+import players.optimisers.ParameterizedPlayer;
 import utils.Board;
 import utils.GUI;
 import utils.Types;
@@ -24,8 +23,8 @@ public class Test {
 
         GUI frame = new GUI(game, "cooperative-ai", false);
         WindowInput wi = new WindowInput();
-        GameStats gameStats = game.run(frame, wi);
-        System.out.println(gameStats);
+        GameLogger gameLogger = game.run(frame, wi);
+        System.out.println(gameLogger);
     }
 
 }

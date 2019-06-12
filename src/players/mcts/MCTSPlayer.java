@@ -28,7 +28,7 @@ public class MCTSPlayer extends ParameterizedPlayer {
     public MCTSParams params;
 
     public MCTSPlayer(long seed, int id, double discountFactor) {
-        this(seed, id, discountFactor, null);
+        this(seed, id, discountFactor, new MCTSParams());
     }
 
     /**
@@ -39,31 +39,15 @@ public class MCTSPlayer extends ParameterizedPlayer {
      */
     public MCTSPlayer(long seed, int id, double discountFactor, MCTSParams params) {
         super(seed, id, params);
-        reset(seed, id, discountFactor);
+        this.discountFactor = discountFactor;
+        m_rnd = new Random(seed);
+        this.params = (MCTSParams) getParameters();
 
         ArrayList<Types.ACTIONS> actionsList = Types.ACTIONS.all();
         actions = new Types.ACTIONS[actionsList.size()];
         int i = 0;
         for (Types.ACTIONS act : actionsList) {
             actions[i++] = act;
-        }
-    }
-
-    /**
-     * Resets this player with seed and ID
-     * @param seed seed for the algorithm to use in the random generator
-     * @param playerID ID of this player in the game.
-     */
-    @Override
-    public void reset(long seed, int playerID, double discountFactor) {
-        this.seed = seed;
-        this.playerID = playerID;
-        this.discountFactor = discountFactor;
-        m_rnd = new Random(seed);
-
-        this.params = (MCTSParams) getParameters();
-        if (this.params == null) {
-            this.params = new MCTSParams();
         }
     }
 
