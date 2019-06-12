@@ -10,13 +10,13 @@ import java.util.Map;
 
 public class GameLogger
 {
-    private Types.TILETYPE[][] board;
+    private String board;
     private ParameterSet[] agentsParams;
     private int ticks;
 
     public GameLogger(Types.TILETYPE[][] board, ParameterSet[] agentsParams)
     {
-        this.board = board;
+        this.board = Board.toString(board);
         this.agentsParams = agentsParams;
         ticks = 0;
     }
@@ -33,16 +33,11 @@ public class GameLogger
         for (int i = 0; i < agentsParams.length; i++)
         {
             ParameterSet params = agentsParams[i];
-            toReturn.put("agent_" + i + "_params", params.getJsonReady());
+            Gson gson = new Gson();
+            toReturn.put("agent_" + i + "_params", gson.toJson(params));
         }
-        toReturn.put("board", Board.toString(board));
+        toReturn.put("board", board);
         return toReturn;
-    }
-
-    public String toJson()
-    {
-        Gson gson = new Gson();
-        return gson.toJson(getJsonReady());
     }
 
     public String toString()
