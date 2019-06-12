@@ -1,0 +1,39 @@
+{
+  "boards": [
+    {
+      "boardID": 0,
+      "tick" : 9,
+      "firstWinnerTick": 9
+      },
+    {
+      "boardID": 1,
+      "tick" : 11,
+      "firstWinnerTick": 8
+      },
+    {
+      "boardID": 2,
+      "tick" : 28,
+      "firstWinnerTick": 17
+      },
+    {
+      "boardID": 3,
+      "tick" : 10,
+      "firstWinnerTick": 9
+      },
+    {
+      "boardID": 4,
+      "tick" : 15,
+      "firstWinnerTick": 8
+      },
+    {
+      "boardID": 5,
+      "tick" : 10,
+      "firstWinnerTick": 10
+      },
+    {
+      "boardID": 6,
+      "tick" : 10,
+      "firstWinnerTick": 8
+      },
+  ]
+}
