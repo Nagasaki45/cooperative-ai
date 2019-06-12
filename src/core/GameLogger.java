@@ -14,6 +14,7 @@ public class GameLogger
     private ParameterSet[] agentsParams;
     private int ticks;
     private int impossibleActionCount;
+    private int firstWinnerTick;
 
     public GameLogger(Types.TILETYPE[][] board, ParameterSet[] agentsParams)
     {
@@ -21,6 +22,7 @@ public class GameLogger
         this.agentsParams = agentsParams;
         ticks = 0;
         impossibleActionCount = 0;
+        firstWinnerTick = -1;
     }
 
     public Map<String, Object> getJsonReady()
@@ -28,6 +30,7 @@ public class GameLogger
         Map<String, Object> toReturn = new HashMap<>();
         toReturn.put("ticks", ticks);
         toReturn.put("inpossibleActionCount", impossibleActionCount);
+        toReturn.put("firstWinnerTick", firstWinnerTick);
         for (int i = 0; i < agentsParams.length; i++)
         {
             ParameterSet params = agentsParams[i];
@@ -59,5 +62,6 @@ public class GameLogger
     {
         this.ticks = gs.getTick();
         this.impossibleActionCount = gs.getImpossibleActionCount();
+        this.firstWinnerTick = gs.getFirstWinnerTick();
     }
 }

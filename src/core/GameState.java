@@ -13,6 +13,7 @@ public class GameState {
     private Map<Integer, Vector2d> playerPositions;
     private Integer tick = 0;
     private int impossibleActionCount = 0;
+    private int firstWinnerTick = -1;
 
 
     public GameState(Types.TILETYPE[][] board) {
@@ -49,6 +50,7 @@ public class GameState {
     public void next(Types.ACTIONS[] actions) {
         tick++;
         ForwardModel.applyActions(this, actions);
+        updateFirstWinnerTick();
     }
 
     public boolean isEnded()
@@ -95,8 +97,10 @@ public class GameState {
             copy.playerPositions.put(entry.getKey(), entry.getValue());
         }
 
-        // Copy tick
+        // Copy scalars
         copy.tick = tick;
+        copy.impossibleActionCount = impossibleActionCount;
+        copy.firstWinnerTick = firstWinnerTick;
 
         return copy;
     }
@@ -151,5 +155,22 @@ public class GameState {
     public int getImpossibleActionCount()
     {
         return impossibleActionCount;
+    }
+
+    public int getFirstWinnerTick()
+    {
+        return firstWinnerTick;
+    }
+
+    private void updateFirstWinnerTick()
+    {
+        boolean[] winners = getWinners();
+        for (boolean winner : winners)
+        {
+            if (winner && (firstWinnerTick == -1))
+            {
+                firstWinnerTick = tick;
+            }
+        }
     }
 }
