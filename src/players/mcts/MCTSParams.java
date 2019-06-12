@@ -29,7 +29,7 @@ public class MCTSParams implements ParameterSet {
     // Parameters
     public double K = Math.sqrt(2);
     public int rollout_depth = 80;//10;
-    public int heuristic_method = 4;
+    public int heuristic_method = 1;
 
     // Budget settings
     public int stop_type = STOP_TIME;

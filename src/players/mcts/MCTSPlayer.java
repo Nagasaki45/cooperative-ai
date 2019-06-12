@@ -15,6 +15,7 @@ public class MCTSPlayer extends ParameterizedPlayer {
      * Random generator.
      */
     private Random m_rnd;
+    private double discountFactor;
 
     /**
      * All actions available.
@@ -26,8 +27,8 @@ public class MCTSPlayer extends ParameterizedPlayer {
      */
     public MCTSParams params;
 
-    public MCTSPlayer(long seed, int id) {
-        this(seed, id, null);
+    public MCTSPlayer(long seed, int id, double discountFactor) {
+        this(seed, id, discountFactor, null);
     }
 
     /**
@@ -36,9 +37,9 @@ public class MCTSPlayer extends ParameterizedPlayer {
      * @param id ID of this player in the game.
      * @param params Parameters for MCTS.
      */
-    public MCTSPlayer(long seed, int id, MCTSParams params) {
+    public MCTSPlayer(long seed, int id, double discountFactor, MCTSParams params) {
         super(seed, id, params);
-        reset(seed, id);
+        reset(seed, id, discountFactor);
 
         ArrayList<Types.ACTIONS> actionsList = Types.ACTIONS.all();
         actions = new Types.ACTIONS[actionsList.size()];
@@ -54,9 +55,10 @@ public class MCTSPlayer extends ParameterizedPlayer {
      * @param playerID ID of this player in the game.
      */
     @Override
-    public void reset(long seed, int playerID) {
+    public void reset(long seed, int playerID, double discountFactor) {
         this.seed = seed;
         this.playerID = playerID;
+        this.discountFactor = discountFactor;
         m_rnd = new Random(seed);
 
         this.params = (MCTSParams) getParameters();
@@ -81,7 +83,7 @@ public class MCTSPlayer extends ParameterizedPlayer {
         int num_actions = actions.length;
 
         // Root of the tree
-        SingleTreeNode m_root = new SingleTreeNode(params, m_rnd, num_actions, actions, playerID);
+        SingleTreeNode m_root = new SingleTreeNode(params, m_rnd, num_actions, actions, playerID, discountFactor);
         m_root.setRootGameState(gs);
 
         //Determine the action using MCTS...
@@ -96,6 +98,6 @@ public class MCTSPlayer extends ParameterizedPlayer {
 
     @Override
     public Player copy() {
-        return new MCTSPlayer(seed, playerID, params);
+        return new MCTSPlayer(seed, playerID, discountFactor, params);
     }
 }

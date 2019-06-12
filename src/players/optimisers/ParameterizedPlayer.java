@@ -5,6 +5,7 @@ import core.Player;
 public abstract class ParameterizedPlayer extends Player {
 
     private ParameterSet params;
+    private double discountFactor;
 
     /**
      * Default constructor, to be called in subclasses (initializes player ID and random seed for this agent.
@@ -19,6 +20,7 @@ public abstract class ParameterizedPlayer extends Player {
     protected ParameterizedPlayer(long seed, int pId, ParameterSet params) {
         super(seed, pId);
         this.params = params;
+        this.discountFactor = discountFactor;
     }
 
     public final void setParameters(ParameterSet params) {
@@ -37,5 +39,5 @@ public abstract class ParameterizedPlayer extends Player {
         this.seed = seed;
     }
 
-    public abstract void reset(long seed, int playerID);
+    public abstract void reset(long seed, int playerID, double discountFactor);
 }
