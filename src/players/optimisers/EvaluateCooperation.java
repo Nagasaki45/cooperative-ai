@@ -56,8 +56,8 @@ public class EvaluateCooperation implements NoisySolutionEvaluator, SearchSpace,
         for (int boardID = 0; boardID < Board.NUM_OF_BOARDS; boardID++)
         {
             ArrayList<ParameterizedPlayer> players = new ArrayList<ParameterizedPlayer>();
-            players.add(new MCTSPlayer(0,0));
-            players.add(new MCTSPlayer(1,1));
+            players.add(new MCTSPlayer(random.nextInt(),0));
+            players.add(new MCTSPlayer(random.nextInt(),1));
 
             // Translate the given parameters, assign them to the player and call the reset() method to make sure all
             // is initialized properly.
@@ -65,7 +65,7 @@ public class EvaluateCooperation implements NoisySolutionEvaluator, SearchSpace,
             {
                 p.translateParameters(a);
             }
-            Game game = new Game(1, players);
+            Game game = new Game(boardID, players);
 
             GameLogger gameLogger = game.run(null, null);
             fitness -= gameLogger.getGameState().getTick();

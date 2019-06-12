@@ -1,12 +1,7 @@
 package players.mcts;
 
 import core.GameState;
-import players.heuristics.JointDistanceHeuristic;
-import players.heuristics.SoloDistanceHeuristic;
-import players.heuristics.JointBinaryHeuristic;
-import players.heuristics.SoloBinaryHeuristic;
-import players.heuristics.StupidHeuristic;
-import players.heuristics.StateHeuristic;
+import players.heuristics.*;
 import utils.ElapsedCpuTimer;
 import utils.Types;
 import utils.Utils;
@@ -78,7 +73,9 @@ public class SingleTreeNode
     void setRootGameState(GameState gs)
     {
         this.rootState = gs;
-         if(params.heuristic_method == params.SOLO_BINARY_HEURISTIC)
+        if (params.heuristic_method == params.STUPID_HEURISTIC)
+            this.rootStateHeuristic = new StupidHeuristic(gs,playerID,m_rnd);
+        else if(params.heuristic_method == params.SOLO_BINARY_HEURISTIC)
             this.rootStateHeuristic = new SoloBinaryHeuristic(gs,playerID,m_rnd);
         else if(params.heuristic_method == params.JOINT_BINARY_HEURISTIC)
             this.rootStateHeuristic = new JointBinaryHeuristic(gs,playerID,m_rnd);

@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class RunNTBEA {
 
-    public static final int NUM_OF_EVALUATIONS = 3;  // Each evaluation averages ticks on all boards
+    public static final int NUM_OF_EVALUATIONS = 100;  // Each evaluation averages ticks on all boards
     public static final double NOISE = 1.0;
     public static final int K_EXPLORE = 2;
     public static final double EPSILON = 0.5;

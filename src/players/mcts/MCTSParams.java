@@ -33,9 +33,9 @@ public class MCTSParams implements ParameterSet {
     public double discount_factor = 0.99;
 
     // Budget settings
-    public int stop_type = STOP_TIME;
+    public int stop_type = STOP_FMCALLS;
     public int num_iterations = 200;
-    public int num_fmcalls = 2000;
+    public int num_fmcalls = 20000;
     public int num_time = 40;
 
     @Override
@@ -72,8 +72,8 @@ public class MCTSParams implements ParameterSet {
     @Override
     public Map<String, Object[]> getParameterValues() {
         HashMap<String, Object[]> parameterValues = new HashMap<>();
-        parameterValues.put("K", new Double[]{1.0, Math.sqrt(2), 2.0});
-        parameterValues.put("rollout_depth", new Integer[]{5, 8, 10, 12, 15});
+        parameterValues.put("K", new Double[]{1.0, Math.sqrt(2), 2.0, 3.0, 4.0});
+        parameterValues.put("rollout_depth", new Integer[]{5, 10, 20, 40, 80});
         parameterValues.put("heuristic_method", new Integer[]{STUPID_HEURISTIC, SOLO_BINARY_HEURISTIC, JOINT_BINARY_HEURISTIC, SOLO_DISTANCE_HEURISTIC, JOINT_DISTANCE_HEURISTIC});
         parameterValues.put("discount_factor", new Double[]{0.5, 0.85, 0.95, 0.99, 1.0});
         return parameterValues;
@@ -92,7 +92,7 @@ public class MCTSParams implements ParameterSet {
     @Override
     public Map<String, String[]> constantNames() {
         HashMap<String, String[]> names = new HashMap<>();
-        names.put("heuristic_method", new String[]{"STUPID_HEURISTIC", "SOLO_BINARY_HEURISTIC", "JOINT_BINARY_HEURISTIC", "SOLO_BINARY_TIMED_HEURISTIC", "JOINT_BINARY_TIMED_HEURISTIC"});
+        names.put("heuristic_method", new String[]{"STUPID_HEURISTIC", "SOLO_BINARY_HEURISTIC", "JOINT_BINARY_HEURISTIC", "SOLO_DISTANCE_HEURISTIC", "JOINT_DISTANCE_HEURISTIC"});
         return names;
     }
 }
