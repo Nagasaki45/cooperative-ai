@@ -48,6 +48,12 @@ public class MCTSParams implements ParameterSet {
         }
     }
 
+    public void setOptimizedParams()
+    {
+        translate(new int[]{3, 4, 4, 3});
+    }
+
+
     @Override
     public void setParameterValue(String param, Object value) {
         switch(param) {
