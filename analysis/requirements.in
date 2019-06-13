@@ -1,3 +1,5 @@
 notebook
 pandas
 seaborn
+statsmodels
+scipy==1.2
